@@ -8,6 +8,13 @@
 import Foundation
 
 
+func _debugPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+    print(items, separator: separator, terminator: terminator)
+    #endif
+}
+
+
 enum ListError: Error {
     case indexOutOfBounds(String)
 }
@@ -93,5 +100,7 @@ extension List {
             try outOfBounds(at: index)
         }
     }
+    
+    func ensure(capacity: Int) {}
 }
 

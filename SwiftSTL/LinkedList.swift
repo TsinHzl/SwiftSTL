@@ -112,22 +112,22 @@ class LinkedList<Element: Equatable>: List {
         
         var node = first
         var index = -1
+        var isHit = false
         while node != nil {
             index += 1
-            if node?.element == element { break }
+            if node?.element == element {
+                isHit = true
+                break
+            }
             node = node?.next
         }
         
-        return index == -1 ? nil : index
+        return isHit ? index : nil
     }
     
     func clear() {
         size = 0
         first = nil
-    }
-    
-    func ensure(capacity: Int) {
-        
     }
     
     func debugPrint() {
@@ -162,10 +162,4 @@ extension LinkedList {
             return nil
         }
     }
-}
-
-private func _debugPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-    #if DEBUG
-    print(items, separator: separator, terminator: terminator)
-    #endif
 }

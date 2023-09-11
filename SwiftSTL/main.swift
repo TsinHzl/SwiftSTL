@@ -7,13 +7,32 @@
 
 import Foundation
 
-print("Hello, World!")
 
-let linkedList = LinkedList<Int>()
-for i in 0 ... 10 {
-    linkedList.add(i + 1)
+
+private func testLinkedList() {
+    let linkedList = LinkedList<Int>()
+    for i in 0 ... 10 {
+        linkedList.add(i + 1)
+    }
+
+    linkedList.debugPrint()
+
+    linkedList.remove(5)
+
+    linkedList.debugPrint()
 }
 
-linkedList.debugPrint()
+private func testDLinkedList() {
+    let linkedList = DoubleLinkedList<Int>()
+    for i in 0 ... 10 {
+        linkedList.add(i + 1)
+    }
 
-linkedList.remove(at: 0)
+    linkedList.debugPrint()
+
+    linkedList.remove(7)
+
+    linkedList.debugPrint()
+}
+
+testDLinkedList()
