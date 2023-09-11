@@ -2,13 +2,13 @@
 //  List.swift
 //  SwiftSTL
 //
-//  Created by MacBook on 2023/9/9.
+//  Created by harllan on 2023/9/9.
 //
 
 import Foundation
 
 
-func _debugPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+internal func _debugPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
     print(items, separator: separator, terminator: terminator)
     #endif

@@ -2,7 +2,7 @@
 //  DoubleLinkedList.swift
 //  SwiftSTL
 //
-//  Created by MacBook on 2023/9/9.
+//  Created by harllan on 2023/9/9.
 //  双向链表
 
 import Foundation

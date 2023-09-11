@@ -2,7 +2,7 @@
 //  Stack.swift
 //  SwiftSTL
 //
-//  Created by MacBook on 2023/9/11.
+//  Created by harllan on 2023/9/11.
 //
 
 import Cocoa
