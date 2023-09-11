@@ -35,15 +35,15 @@ class LinkedList<Element: Equatable>: List {
         _debugPrint("--- LinkedList.deinit ---")
     }
     
-    func contains(_ element: Element?) {
+    public func contains(_ element: Element?) {
         
     }
     
-    func get(at index: Int) -> Element? {
+    public func get(at index: Int) -> Element? {
         return getNode(at: index)?.element
     }
     
-    func set(_ element: Element?, at index: Int) -> Element? {
+    public func set(_ element: Element?, at index: Int) -> Element? {
         guard let element = element else { return nil }
         
         let node = getNode(at: index)
@@ -54,7 +54,7 @@ class LinkedList<Element: Equatable>: List {
         return oldElement
     }
     
-    func add(_ element: Element?, at index: Int) {
+    public func append(_ element: Element?, at index: Int) {
         guard let element = element else { return }
         
         do {
@@ -70,11 +70,11 @@ class LinkedList<Element: Equatable>: List {
         } catch { }
     }
     
-    func addFirst(_ element: Element?) {
-        add(element, at: 0)
+    public func addFirst(_ element: Element?) {
+        append(element, at: 0)
     }
     
-    func remove(at index: Int) -> Element? {
+    public func remove(at index: Int) -> Element? {
         do {
             try rangeCheck(at: index)
             
@@ -93,21 +93,21 @@ class LinkedList<Element: Equatable>: List {
         }
     }
     
-    func removeFirst() -> Element? {
+    public func removeFirst() -> Element? {
         return remove(at: 0)
     }
     
-    func removeLast() -> Element? {
+    public func removeLast() -> Element? {
         return remove(at: size - 1)
     }
     
-    func remove(_ element: Element?) {
+    public func remove(_ element: Element?) {
         if let index = indexOf(element) {
             let _ = remove(at: index)
         }
     }
     
-    func indexOf(_ element: Element?) -> Int? {
+    public func indexOf(_ element: Element?) -> Int? {
         guard let element = element else { return nil }
         
         var node = first
@@ -125,12 +125,12 @@ class LinkedList<Element: Equatable>: List {
         return isHit ? index : nil
     }
     
-    func clear() {
+    public func clear() {
         size = 0
         first = nil
     }
     
-    func debugPrint() {
+    public func debugPrint() {
         #if DEBUG
         var node = first
         var str = ""

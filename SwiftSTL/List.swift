@@ -40,10 +40,10 @@ protocol List {
     func set(_ element: Element?, at index: Int) -> Element?
     
     /// 添加元素到最后
-    func add(_ element: Element?)
+    func append(_ element: Element?)
     
     /// 往index位置添加元素
-    func add(_ element: Element?, at index: Int)
+    func append(_ element: Element?, at index: Int)
     
     /// 删除index位置对应元素
     func remove(at index: Int) -> Element?
@@ -75,8 +75,8 @@ extension List {
         return indexOf(element) == nil
     }
     
-    func add(_ element: Element?) {
-        add(element, at: size)
+    func append(_ element: Element?) {
+        append(element, at: size)
     }
     
     func remove(_ element: Element?) {

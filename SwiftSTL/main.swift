@@ -12,7 +12,7 @@ import Foundation
 private func testLinkedList() {
     let linkedList = LinkedList<Int>()
     for i in 0 ... 10 {
-        linkedList.add(i + 1)
+        linkedList.append(i + 1)
     }
 
     linkedList.debugPrint()
@@ -25,7 +25,7 @@ private func testLinkedList() {
 private func testDLinkedList() {
     let linkedList = DoubleLinkedList<Int>()
     for i in 0 ... 10 {
-        linkedList.add(i + 1)
+        linkedList.append(i + 1)
     }
 
     linkedList.debugPrint()

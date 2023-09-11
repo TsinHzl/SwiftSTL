@@ -28,11 +28,11 @@ class DoubleLinkedList<Element: Equatable>: List {
     private var last: Node<Element>?
     
     
-    func get(at index: Int) -> Element? {
+    public func get(at index: Int) -> Element? {
         return getNode(index)?.element
     }
 
-    func set(_ element: Element?, at index: Int) -> Element? {
+    public func set(_ element: Element?, at index: Int) -> Element? {
         guard let element = element else { return nil }
         
         let node = getNode(index)
@@ -42,7 +42,7 @@ class DoubleLinkedList<Element: Equatable>: List {
         return old
     }
     
-    func add(_ element: Element?, at index: Int) {
+    public func append(_ element: Element?, at index: Int) {
         guard let element = element else { return }
         
         do {
@@ -74,7 +74,7 @@ class DoubleLinkedList<Element: Equatable>: List {
         size += 1
     }
     
-    func remove(at index: Int) -> Element? {
+    public func remove(at index: Int) -> Element? {
         do {
             try rangeCheck(at: index)
         } catch { return nil }
@@ -99,7 +99,7 @@ class DoubleLinkedList<Element: Equatable>: List {
         return old
     }
     
-    func indexOf(_ element: Element?) -> Int? {
+    public func indexOf(_ element: Element?) -> Int? {
         guard let element = element else { return nil }
         
         var node = first
@@ -111,13 +111,13 @@ class DoubleLinkedList<Element: Equatable>: List {
         return nil
     }
     
-    func clear() {
+    public func clear() {
         size = 0
         first = nil
         last = nil
     }
     
-    func debugPrint() {
+    public func debugPrint() {
         #if DEBUG
         var node = first
         var str = ""
