@@ -26,9 +26,9 @@ public struct LinkedList<Element: Equatable>: List {
     private var first: Node<Element>?
     
     
-    private(set) var count: Int = 0
+    public private(set) var count: Int = 0
     
-    private(set) var isEmpty: Bool = false
+    public private(set) var isEmpty: Bool = false
     
     
     public init() { }

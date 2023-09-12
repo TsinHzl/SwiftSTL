@@ -28,7 +28,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
     }
     
     
-    private(set) var count: Int = 0
+    public private(set) var count: Int = 0
     private var first: Node<Element>?
     private var last: Node<Element>?
     

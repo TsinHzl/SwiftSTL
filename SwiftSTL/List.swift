@@ -20,7 +20,7 @@ enum ListError: Error {
 }
 
 
-protocol List {
+public protocol List {
     
     associatedtype Element: Equatable
     
@@ -59,62 +59,53 @@ protocol List {
     
     /// 清空所有元素
     mutating func removeAll()
-    
-    
-    func outOfBounds(at index: Int) throws
-    
-    func rangeCheck(at index: Int) throws
-    
-    func rangeCheckForAdd(at index: Int) throws
-    
-    func ensure(capacity: Int)
 }
 
 
 extension List {
     
-    var isEmpty: Bool { count == 0 }
+    public var isEmpty: Bool { count == 0 }
     
-    func contains(_ element: Element?) -> Bool {
+    public func contains(_ element: Element?) -> Bool {
         return indexOf(element) != nil
     }
     
-    mutating func append(_ element: Element) {
+    public mutating func append(_ element: Element) {
         append(element, at: count)
     }
     
-    mutating func remove(_ element: Element?) {
+    public mutating func remove(_ element: Element?) {
         if let index = indexOf(element) {
             let _ = remove(at: index)
         }
     }
     
     @discardableResult
-    mutating func removeFirst() -> Element? {
+    public mutating func removeFirst() -> Element? {
         return remove(at: 0)
     }
     
     @discardableResult
-    mutating func removeLast() -> Element? {
+    public mutating func removeLast() -> Element? {
         return remove(at: count - 1)
     }
     
-    func outOfBounds(at index: Int) throws {
+    internal func outOfBounds(at index: Int) throws {
         throw ListError.indexOutOfBounds("index: \(index) out of bounds: \(count)")
     }
     
-    func rangeCheck(at index: Int) throws {
+    internal func rangeCheck(at index: Int) throws {
         if index < 0 || index >= count {
             try outOfBounds(at: index)
         }
     }
     
-    func rangeCheckForAdd(at index: Int) throws {
+    internal func rangeCheckForAdd(at index: Int) throws {
         if index < 0 || index > count {
             try outOfBounds(at: index)
         }
     }
     
-    func ensure(capacity: Int) {}
+    internal func ensure(capacity: Int) {}
 }
 
