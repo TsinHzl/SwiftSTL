@@ -8,7 +8,6 @@
 import Foundation
 
 
-
 private func testLinkedList() {
     var linkedList = LinkedList<Int>()
     for i in 0 ... 10 {

@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA817F8F2AAC70530057C583 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817F8E2AAC70530057C583 /* main.swift */; };
-		FA817F962AAC71370057C583 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817F952AAC71370057C583 /* List.swift */; };
-		FA817F982AAC74310057C583 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817F972AAC74310057C583 /* LinkedList.swift */; };
-		FA817F9C2AACC46C0057C583 /* DoubleLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817F9B2AACC46C0057C583 /* DoubleLinkedList.swift */; };
-		FA817FE02AAFF9070057C583 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817FDF2AAFF9070057C583 /* Queue.swift */; };
-		FA817FE22AB008750057C583 /* Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817FE12AB008750057C583 /* Dequeue.swift */; };
-		FAC0F7192AAF637F00C063C1 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F7182AAF637F00C063C1 /* Stack.swift */; };
+		FA817FF02AB015BF0057C583 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817FEF2AB015BF0057C583 /* main.swift */; };
+		FA8180042AB016480057C583 /* DoubleLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817FFE2AB016480057C583 /* DoubleLinkedList.swift */; };
+		FA8180052AB016480057C583 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817FFF2AB016480057C583 /* Stack.swift */; };
+		FA8180062AB016480057C583 /* Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8180002AB016480057C583 /* Dequeue.swift */; };
+		FA8180072AB016480057C583 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8180012AB016480057C583 /* List.swift */; };
+		FA8180082AB016480057C583 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8180022AB016480057C583 /* Queue.swift */; };
+		FA8180092AB016480057C583 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8180032AB016480057C583 /* LinkedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FA817F892AAC70530057C583 /* CopyFiles */ = {
+		FA817FEA2AB015BF0057C583 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -29,18 +29,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FA817F8B2AAC70530057C583 /* SwiftSTL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftSTL; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA817F8E2AAC70530057C583 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		FA817F952AAC71370057C583 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
-		FA817F972AAC74310057C583 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
-		FA817F9B2AACC46C0057C583 /* DoubleLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleLinkedList.swift; sourceTree = "<group>"; };
-		FA817FDF2AAFF9070057C583 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		FA817FE12AB008750057C583 /* Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeue.swift; sourceTree = "<group>"; };
-		FAC0F7182AAF637F00C063C1 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		FA817FEC2AB015BF0057C583 /* SwiftSTLExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftSTLExample; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA817FEF2AB015BF0057C583 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		FA817FFE2AB016480057C583 /* DoubleLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleLinkedList.swift; sourceTree = "<group>"; };
+		FA817FFF2AB016480057C583 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		FA8180002AB016480057C583 /* Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeue.swift; sourceTree = "<group>"; };
+		FA8180012AB016480057C583 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		FA8180022AB016480057C583 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		FA8180032AB016480057C583 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FA817F882AAC70530057C583 /* Frameworks */ = {
+		FA817FE92AB015BF0057C583 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -50,72 +50,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA817F822AAC70530057C583 = {
+		FA817FE32AB015BF0057C583 = {
 			isa = PBXGroup;
 			children = (
-				FA817F8D2AAC70530057C583 /* SwiftSTL */,
-				FA817F8C2AAC70530057C583 /* Products */,
+				FA817FEE2AB015BF0057C583 /* SwiftSTLExample */,
+				FA817FED2AB015BF0057C583 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		FA817F8C2AAC70530057C583 /* Products */ = {
+		FA817FED2AB015BF0057C583 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA817F8B2AAC70530057C583 /* SwiftSTL */,
+				FA817FEC2AB015BF0057C583 /* SwiftSTLExample */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FA817F8D2AAC70530057C583 /* SwiftSTL */ = {
+		FA817FEE2AB015BF0057C583 /* SwiftSTLExample */ = {
 			isa = PBXGroup;
 			children = (
-				FA817F952AAC71370057C583 /* List.swift */,
-				FA817F972AAC74310057C583 /* LinkedList.swift */,
-				FA817F9B2AACC46C0057C583 /* DoubleLinkedList.swift */,
-				FAC0F7182AAF637F00C063C1 /* Stack.swift */,
-				FA817FDF2AAFF9070057C583 /* Queue.swift */,
-				FA817FE12AB008750057C583 /* Dequeue.swift */,
-				FA817F8E2AAC70530057C583 /* main.swift */,
+				FA817FFD2AB016480057C583 /* SwiftSTL */,
+				FA817FEF2AB015BF0057C583 /* main.swift */,
+			);
+			path = SwiftSTLExample;
+			sourceTree = "<group>";
+		};
+		FA817FFD2AB016480057C583 /* SwiftSTL */ = {
+			isa = PBXGroup;
+			children = (
+				FA8180012AB016480057C583 /* List.swift */,
+				FA8180032AB016480057C583 /* LinkedList.swift */,
+				FA817FFE2AB016480057C583 /* DoubleLinkedList.swift */,
+				FA817FFF2AB016480057C583 /* Stack.swift */,
+				FA8180022AB016480057C583 /* Queue.swift */,
+				FA8180002AB016480057C583 /* Dequeue.swift */,
 			);
 			path = SwiftSTL;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FA817F8A2AAC70530057C583 /* SwiftSTL */ = {
+		FA817FEB2AB015BF0057C583 /* SwiftSTLExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA817F922AAC70530057C583 /* Build configuration list for PBXNativeTarget "SwiftSTL" */;
+			buildConfigurationList = FA817FF32AB015BF0057C583 /* Build configuration list for PBXNativeTarget "SwiftSTLExample" */;
 			buildPhases = (
-				FA817F872AAC70530057C583 /* Sources */,
-				FA817F882AAC70530057C583 /* Frameworks */,
-				FA817F892AAC70530057C583 /* CopyFiles */,
+				FA817FE82AB015BF0057C583 /* Sources */,
+				FA817FE92AB015BF0057C583 /* Frameworks */,
+				FA817FEA2AB015BF0057C583 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SwiftSTL;
-			productName = SwiftSTL;
-			productReference = FA817F8B2AAC70530057C583 /* SwiftSTL */;
+			name = SwiftSTLExample;
+			productName = SwiftSTLExample;
+			productReference = FA817FEC2AB015BF0057C583 /* SwiftSTLExample */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		FA817F832AAC70530057C583 /* Project object */ = {
+		FA817FE42AB015BF0057C583 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					FA817F8A2AAC70530057C583 = {
+					FA817FEB2AB015BF0057C583 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = FA817F862AAC70530057C583 /* Build configuration list for PBXProject "SwiftSTL" */;
+			buildConfigurationList = FA817FE72AB015BF0057C583 /* Build configuration list for PBXProject "SwiftSTLExample" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -123,35 +131,35 @@
 				en,
 				Base,
 			);
-			mainGroup = FA817F822AAC70530057C583;
-			productRefGroup = FA817F8C2AAC70530057C583 /* Products */;
+			mainGroup = FA817FE32AB015BF0057C583;
+			productRefGroup = FA817FED2AB015BF0057C583 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA817F8A2AAC70530057C583 /* SwiftSTL */,
+				FA817FEB2AB015BF0057C583 /* SwiftSTLExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FA817F872AAC70530057C583 /* Sources */ = {
+		FA817FE82AB015BF0057C583 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA817F982AAC74310057C583 /* LinkedList.swift in Sources */,
-				FA817FE02AAFF9070057C583 /* Queue.swift in Sources */,
-				FAC0F7192AAF637F00C063C1 /* Stack.swift in Sources */,
-				FA817FE22AB008750057C583 /* Dequeue.swift in Sources */,
-				FA817F8F2AAC70530057C583 /* main.swift in Sources */,
-				FA817F962AAC71370057C583 /* List.swift in Sources */,
-				FA817F9C2AACC46C0057C583 /* DoubleLinkedList.swift in Sources */,
+				FA817FF02AB015BF0057C583 /* main.swift in Sources */,
+				FA8180082AB016480057C583 /* Queue.swift in Sources */,
+				FA8180052AB016480057C583 /* Stack.swift in Sources */,
+				FA8180062AB016480057C583 /* Dequeue.swift in Sources */,
+				FA8180072AB016480057C583 /* List.swift in Sources */,
+				FA8180042AB016480057C583 /* DoubleLinkedList.swift in Sources */,
+				FA8180092AB016480057C583 /* LinkedList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		FA817F902AAC70530057C583 /* Debug */ = {
+		FA817FF12AB015BF0057C583 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -211,7 +219,7 @@
 			};
 			name = Debug;
 		};
-		FA817F912AAC70530057C583 /* Release */ = {
+		FA817FF22AB015BF0057C583 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -264,7 +272,7 @@
 			};
 			name = Release;
 		};
-		FA817F932AAC70530057C583 /* Debug */ = {
+		FA817FF42AB015BF0057C583 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -275,7 +283,7 @@
 			};
 			name = Debug;
 		};
-		FA817F942AAC70530057C583 /* Release */ = {
+		FA817FF52AB015BF0057C583 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -289,25 +297,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA817F862AAC70530057C583 /* Build configuration list for PBXProject "SwiftSTL" */ = {
+		FA817FE72AB015BF0057C583 /* Build configuration list for PBXProject "SwiftSTLExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FA817F902AAC70530057C583 /* Debug */,
-				FA817F912AAC70530057C583 /* Release */,
+				FA817FF12AB015BF0057C583 /* Debug */,
+				FA817FF22AB015BF0057C583 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA817F922AAC70530057C583 /* Build configuration list for PBXNativeTarget "SwiftSTL" */ = {
+		FA817FF32AB015BF0057C583 /* Build configuration list for PBXNativeTarget "SwiftSTLExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FA817F932AAC70530057C583 /* Debug */,
-				FA817F942AAC70530057C583 /* Release */,
+				FA817FF42AB015BF0057C583 /* Debug */,
+				FA817FF52AB015BF0057C583 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = FA817F832AAC70530057C583 /* Project object */;
+	rootObject = FA817FE42AB015BF0057C583 /* Project object */;
 }
