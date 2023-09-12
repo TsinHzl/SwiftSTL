@@ -36,7 +36,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
     public func get(at index: Int) -> Element? {
         return getNode(index)?.element
     }
-
+    
     public func set(_ element: Element, at index: Int) -> Element? {
         
         let node = getNode(index)
