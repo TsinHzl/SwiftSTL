@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class LinkedList<Element: Equatable>: List {
+public struct LinkedList<Element: Equatable>: List {
     class Node<Element: Equatable> {
         var element: Element
         var next: Node?
@@ -26,18 +26,10 @@ class LinkedList<Element: Equatable>: List {
     private var first: Node<Element>?
     
     
-    private(set) var size: Int = 0
+    private(set) var count: Int = 0
     
     private(set) var isEmpty: Bool = false
     
-    
-    deinit {
-        _debugPrint("--- LinkedList.deinit ---")
-    }
-    
-    public func contains(_ element: Element?) {
-        
-    }
     
     public func get(at index: Int) -> Element? {
         return getNode(at: index)?.element
@@ -54,7 +46,7 @@ class LinkedList<Element: Equatable>: List {
         return oldElement
     }
     
-    public func append(_ element: Element?, at index: Int) {
+    public mutating func append(_ element: Element?, at index: Int) {
         guard let element = element else { return }
         
         do {
@@ -66,15 +58,15 @@ class LinkedList<Element: Equatable>: List {
                 let newNode = Node(element: element, next: prevNode?.next)
                 prevNode?.next = newNode
             }
-            size += 1
+            count += 1
         } catch { }
     }
     
-    public func addFirst(_ element: Element?) {
+    public mutating func addFirst(_ element: Element?) {
         append(element, at: 0)
     }
     
-    public func remove(at index: Int) -> Element? {
+    public mutating func remove(at index: Int) -> Element? {
         do {
             try rangeCheck(at: index)
             
@@ -93,15 +85,15 @@ class LinkedList<Element: Equatable>: List {
         }
     }
     
-    public func removeFirst() -> Element? {
+    public mutating func removeFirst() -> Element? {
         return remove(at: 0)
     }
     
-    public func removeLast() -> Element? {
-        return remove(at: size - 1)
+    public mutating func removeLast() -> Element? {
+        return remove(at: count - 1)
     }
     
-    public func remove(_ element: Element?) {
+    public mutating func remove(_ element: Element?) {
         if let index = indexOf(element) {
             let _ = remove(at: index)
         }
@@ -125,8 +117,8 @@ class LinkedList<Element: Equatable>: List {
         return isHit ? index : nil
     }
     
-    public func clear() {
-        size = 0
+    public mutating func clear() {
+        count = 0
         first = nil
     }
     

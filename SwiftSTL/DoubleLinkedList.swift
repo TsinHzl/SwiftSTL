@@ -8,12 +8,17 @@
 import Foundation
 
 
-class DoubleLinkedList<Element: Equatable>: List {
+public struct DoubleLinkedList<Element: Equatable>: List {
     
     class Node<Element: Equatable> {
         var element: Element
         var prev: Node<Element>?
         var next: Node<Element>?
+        
+        
+        deinit {
+            _debugPrint("--- DoubleLinkedList.Node.deinit ---")
+        }
         
         init(element: Element, prev: Node<Element>?, next: Node<Element>?) {
             self.element = element
@@ -23,7 +28,7 @@ class DoubleLinkedList<Element: Equatable>: List {
     }
     
     
-    private(set) var size: Int = 0
+    private(set) var count: Int = 0
     private var first: Node<Element>?
     private var last: Node<Element>?
     
@@ -42,14 +47,14 @@ class DoubleLinkedList<Element: Equatable>: List {
         return old
     }
     
-    public func append(_ element: Element?, at index: Int) {
+    public mutating func append(_ element: Element?, at index: Int) {
         guard let element = element else { return }
         
         do {
             try rangeCheckForAdd(at: index)
         } catch {}
         
-        if index == size {
+        if index == count {
             let l = last
             let newNode = Node(element: element, prev: l, next: nil)
             last = newNode
@@ -71,10 +76,10 @@ class DoubleLinkedList<Element: Equatable>: List {
             }
         }
         
-        size += 1
+        count += 1
     }
     
-    public func remove(at index: Int) -> Element? {
+    public mutating func remove(at index: Int) -> Element? {
         do {
             try rangeCheck(at: index)
         } catch { return nil }
@@ -95,7 +100,7 @@ class DoubleLinkedList<Element: Equatable>: List {
             next?.prev = prev
         }
         
-        size -= 1
+        count -= 1
         return old
     }
     
@@ -103,7 +108,7 @@ class DoubleLinkedList<Element: Equatable>: List {
         guard let element = element else { return nil }
         
         var node = first
-        for i in 0 ..< size {
+        for i in 0 ..< count {
             if node?.element == element { return i }
             
             node = node?.next
@@ -111,8 +116,8 @@ class DoubleLinkedList<Element: Equatable>: List {
         return nil
     }
     
-    public func clear() {
-        size = 0
+    public mutating func clear() {
+        count = 0
         first = nil
         last = nil
     }
@@ -144,7 +149,7 @@ extension DoubleLinkedList {
             return nil
         }
         
-        if index < (size >> 1) {
+        if index < (count >> 1) {
             var node = first
             for _ in 0 ..< index {
                 node = node?.next
@@ -152,7 +157,7 @@ extension DoubleLinkedList {
             return node
         } else {
             var node = last
-            for _ in index ..< size - 1 {
+            for _ in index ..< count - 1 {
                 node = node?.prev
             }
             return node

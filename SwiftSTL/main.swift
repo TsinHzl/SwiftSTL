@@ -10,7 +10,7 @@ import Foundation
 
 
 private func testLinkedList() {
-    let linkedList = LinkedList<Int>()
+    var linkedList = LinkedList<Int>()
     for i in 0 ... 10 {
         linkedList.append(i + 1)
     }
@@ -23,7 +23,7 @@ private func testLinkedList() {
 }
 
 private func testDLinkedList() {
-    let linkedList = DoubleLinkedList<Int>()
+    var linkedList = DoubleLinkedList<Int>()
     for i in 0 ... 10 {
         linkedList.append(i + 1)
     }
@@ -35,4 +35,18 @@ private func testDLinkedList() {
     linkedList.debugPrint()
 }
 
-testDLinkedList()
+private func testStack() {
+    var stack = Stack<Int>()
+    for i in 0 ... 10 {
+        stack.push(i + 1)
+    }
+    stack.debugPrint()
+    
+    for _ in 0 ... 11 {
+        stack.pop()
+    }
+    
+    stack.debugPrint()
+}
+
+testStack()

@@ -11,6 +11,7 @@
 		FA817F962AAC71370057C583 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817F952AAC71370057C583 /* List.swift */; };
 		FA817F982AAC74310057C583 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817F972AAC74310057C583 /* LinkedList.swift */; };
 		FA817F9C2AACC46C0057C583 /* DoubleLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817F9B2AACC46C0057C583 /* DoubleLinkedList.swift */; };
+		FA817FE02AAFF9070057C583 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA817FDF2AAFF9070057C583 /* Queue.swift */; };
 		FAC0F7192AAF637F00C063C1 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F7182AAF637F00C063C1 /* Stack.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		FA817F952AAC71370057C583 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		FA817F972AAC74310057C583 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		FA817F9B2AACC46C0057C583 /* DoubleLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleLinkedList.swift; sourceTree = "<group>"; };
+		FA817FDF2AAFF9070057C583 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		FAC0F7182AAF637F00C063C1 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				FA817F972AAC74310057C583 /* LinkedList.swift */,
 				FA817F9B2AACC46C0057C583 /* DoubleLinkedList.swift */,
 				FAC0F7182AAF637F00C063C1 /* Stack.swift */,
+				FA817FDF2AAFF9070057C583 /* Queue.swift */,
 				FA817F8E2AAC70530057C583 /* main.swift */,
 			);
 			path = SwiftSTL;
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA817F982AAC74310057C583 /* LinkedList.swift in Sources */,
+				FA817FE02AAFF9070057C583 /* Queue.swift in Sources */,
 				FAC0F7192AAF637F00C063C1 /* Stack.swift in Sources */,
 				FA817F8F2AAC70530057C583 /* main.swift in Sources */,
 				FA817F962AAC71370057C583 /* List.swift in Sources */,

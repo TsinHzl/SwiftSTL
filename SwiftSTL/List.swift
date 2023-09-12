@@ -25,7 +25,7 @@ protocol List {
     associatedtype Element: Equatable
     
     /// 元素的数量
-    var size: Int { get }
+    var count: Int { get }
     
     /// 是否为空
     var isEmpty: Bool { get }
@@ -40,21 +40,21 @@ protocol List {
     func set(_ element: Element?, at index: Int) -> Element?
     
     /// 添加元素到最后
-    func append(_ element: Element?)
+    mutating func append(_ element: Element?)
     
     /// 往index位置添加元素
-    func append(_ element: Element?, at index: Int)
+    mutating func append(_ element: Element?, at index: Int)
     
     /// 删除index位置对应元素
-    func remove(at index: Int) -> Element?
+    mutating func remove(at index: Int) -> Element?
     
-    func remove(_ element: Element?)
+    mutating func remove(_ element: Element?)
     
     /// 查看元素对应位置
     func indexOf(_ element: Element?) -> Int?
     
     /// 清空所有元素
-    func clear()
+    mutating func clear()
     
     
     func outOfBounds(at index: Int) throws
@@ -69,34 +69,34 @@ protocol List {
 
 extension List {
     
-    var isEmpty: Bool { size == 0 }
+    var isEmpty: Bool { count == 0 }
     
     func contains(_ element: Element?) -> Bool {
-        return indexOf(element) == nil
+        return indexOf(element) != nil
     }
     
-    func append(_ element: Element?) {
-        append(element, at: size)
+    mutating func append(_ element: Element?) {
+        append(element, at: count)
     }
     
-    func remove(_ element: Element?) {
+    mutating func remove(_ element: Element?) {
         if let index = indexOf(element) {
             let _ = remove(at: index)
         }
     }
     
     func outOfBounds(at index: Int) throws {
-        throw ListError.indexOutOfBounds("index: \(index) out of bounds: \(size)")
+        throw ListError.indexOutOfBounds("index: \(index) out of bounds: \(count)")
     }
     
     func rangeCheck(at index: Int) throws {
-        if index < 0 || index >= size {
+        if index < 0 || index >= count {
             try outOfBounds(at: index)
         }
     }
     
     func rangeCheckForAdd(at index: Int) throws {
-        if index < 0 || index > size {
+        if index < 0 || index > count {
             try outOfBounds(at: index)
         }
     }
