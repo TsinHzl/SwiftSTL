@@ -5,7 +5,7 @@
 //  Created by harllan on 2023/9/9.
 //  单向链表
 
-import Cocoa
+import Foundation
 
 public struct LinkedList<Element: Equatable>: List {
     class Node<Element: Equatable> {
@@ -58,14 +58,6 @@ public struct LinkedList<Element: Equatable>: List {
             }
             count += 1
         } catch { }
-    }
-    
-    public mutating func appendFirst(_ element: Element) {
-        append(element, at: 0)
-    }
-    
-    public mutating func appendLast(_ element: Element) {
-        append(element, at: count)
     }
     
     @discardableResult
