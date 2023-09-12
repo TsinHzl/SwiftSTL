@@ -48,6 +48,10 @@ private func testDLinkedList() {
     
     linkedList.debugPrint()
     
+    for item in linkedList {
+        print(item)
+    }
+    
     for _ in 0 ... 10 {
         linkedList.removeFirst()
     }
@@ -61,6 +65,10 @@ private func testStack() {
         stack.push(i + 1)
     }
     stack.debugPrint()
+    
+    for item in stack {
+        print(item)
+    }
     
     for _ in 0 ... 11 {
         stack.pop()
@@ -82,6 +90,10 @@ private func testQueue() {
     
     let _ = queue.poll()
     
+    for item in queue {
+        print(item)
+    }
+    
     queue.removeAll()
     
     queue.debugPrint()
@@ -100,8 +112,12 @@ private func testDequeue() {
     let _ = queue.pollRear()
     let _ = queue.pollFront()
     
+    for item in queue {
+        print(item)
+    }
+    
     queue.debugPrint()
 }
 
 
-testDLinkedList()
+testDequeue()

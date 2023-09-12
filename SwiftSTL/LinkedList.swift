@@ -7,9 +7,13 @@
 
 import Foundation
 
-public struct LinkedList<Element: Equatable>: List {
-    class Node<Element: Equatable> {
-        var element: Element
+
+public struct LinkedList<E: Equatable>: List {
+    
+//    public typealias Element = Element
+    
+    class Node<E: Equatable> {
+        var element: E
         var next: Node?
         
         
@@ -17,13 +21,13 @@ public struct LinkedList<Element: Equatable>: List {
             _debugPrint("--- LinkedList.Node.deinit ---")
         }
         
-        init(element: Element, next: Node?) {
+        init(element: E, next: Node?) {
             self.element = element
             self.next = next
         }
     }
     
-    private var first: Node<Element>?
+    private var first: Node<E>?
     
     
     public private(set) var count: Int = 0
@@ -33,11 +37,11 @@ public struct LinkedList<Element: Equatable>: List {
     
     public init() { }
     
-    public func get(at index: Int) -> Element? {
+    public func get(at index: Int) -> E? {
         return getNode(at: index)?.element
     }
     
-    public func set(_ element: Element, at index: Int) -> Element? {
+    public func set(_ element: E, at index: Int) -> E? {
         
         let node = getNode(at: index)
         let oldElement = node?.element
@@ -47,7 +51,7 @@ public struct LinkedList<Element: Equatable>: List {
         return oldElement
     }
     
-    public mutating func append(_ element: Element, at index: Int) {
+    public mutating func append(_ element: E, at index: Int) {
         
         do {
             try rangeCheckForAdd(at: index)
@@ -63,11 +67,11 @@ public struct LinkedList<Element: Equatable>: List {
     }
     
     @discardableResult
-    public mutating func remove(at index: Int) -> Element? {
+    public mutating func remove(at index: Int) -> E? {
         do {
             try rangeCheck(at: index)
             
-            var oldElement: Element?
+            var oldElement: E?
             if index == 0 {
                 oldElement = first?.element
                 first = first?.next
@@ -82,13 +86,13 @@ public struct LinkedList<Element: Equatable>: List {
         }
     }
     
-    public mutating func remove(_ element: Element?) {
+    public mutating func remove(_ element: E?) {
         if let index = indexOf(element) {
             let _ = remove(at: index)
         }
     }
     
-    public func indexOf(_ element: Element?) -> Int? {
+    public func indexOf(_ element: E?) -> Int? {
         guard let element = element else { return nil }
         
         var node = first
@@ -129,7 +133,7 @@ public struct LinkedList<Element: Equatable>: List {
 }
 
 extension LinkedList {
-    private func getNode(at index: Int) -> Node<Element>? {
+    private func getNode(at index: Int) -> Node<E>? {
         do {
             try rangeCheck(at: index)
             
@@ -142,5 +146,29 @@ extension LinkedList {
         } catch {
             return nil
         }
+    }
+}
+
+
+extension LinkedList: Sequence {
+    public func makeIterator() -> some IteratorProtocol {
+        return LinkedListIterator(linkedList: self)
+    }
+}
+
+struct LinkedListIterator<Element: Equatable>: IteratorProtocol {
+    private var currentIndex = 0
+    private var linkedList: LinkedList<Element>
+    
+    init(linkedList: LinkedList<Element>) {
+        self.linkedList = linkedList
+    }
+    
+    mutating func next() -> Element? {
+        guard currentIndex < linkedList.count else { return nil }
+        
+        let element = linkedList.get(at: currentIndex)
+        currentIndex += 1
+        return element
     }
 }

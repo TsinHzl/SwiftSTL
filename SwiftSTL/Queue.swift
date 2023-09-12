@@ -8,8 +8,8 @@
 import Foundation
 
 
-public struct Queue<Element: Equatable> {
-    private var list = DoubleLinkedList<Element>()
+public struct Queue<E: Equatable> {
+    private var list = DoubleLinkedList<E>()
     
     public var count: Int { list.count }
     
@@ -22,15 +22,15 @@ public struct Queue<Element: Equatable> {
         list.removeAll()
     }
     
-    public mutating func offer(_ element: Element) {
+    public mutating func offer(_ element: E) {
         list.append(element)
     }
     
-    public mutating func poll() -> Element? {
+    public mutating func poll() -> E? {
         list.remove(at: 0)
     }
     
-    public func front() -> Element? {
+    public func front() -> E? {
         list.get(at: 0)
     }
     
@@ -50,5 +50,33 @@ public struct Queue<Element: Equatable> {
         
         _debugPrint(str)
         #endif
+    }
+    
+    internal func get(at index: Int) -> E? {
+        return list.get(at: index)
+    }
+}
+
+
+extension Queue: Sequence {
+    public func makeIterator() -> some IteratorProtocol {
+        return QueueIterator(queue: self)
+    }
+}
+
+struct QueueIterator<Element: Equatable>: IteratorProtocol {
+    private var currentIndex = 0
+    private var queue: Queue<Element>
+    
+    init(queue: Queue<Element>) {
+        self.queue = queue
+    }
+    
+    mutating func next() -> Element? {
+        guard currentIndex < queue.count else { return nil }
+        
+        let element = queue.get(at: currentIndex)
+        currentIndex += 1
+        return element
     }
 }

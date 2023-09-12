@@ -8,8 +8,8 @@
 import Foundation
 
 
-public struct Stack<Element> {
-    private var list = [Element]()
+public struct Stack<E> {
+    private var list = [E]()
     
     
     public var count: Int { list.count }
@@ -19,20 +19,20 @@ public struct Stack<Element> {
     
     public init() { }
     
-    public mutating func push(_ element: Element?) {
+    public mutating func push(_ element: E?) {
         guard let element = element else { return }
         
         list.append(element)
     }
     
     @discardableResult
-    public mutating func pop() -> Element? {
+    public mutating func pop() -> E? {
         if list.count == 0 { return nil }
         
         return list.remove(at: list.count - 1)
     }
     
-    public mutating func top() -> Element? {
+    public mutating func top() -> E? {
         return list.last
     }
     
@@ -57,5 +57,33 @@ public struct Stack<Element> {
         
         _debugPrint(str)
         #endif
+    }
+    
+    internal func get(at index: Int) -> E? {
+        return list[index]
+    }
+}
+
+
+extension Stack: Sequence {
+    public func makeIterator() -> some IteratorProtocol {
+        return StackIterator(stack: self)
+    }
+}
+
+struct StackIterator<Element>: IteratorProtocol {
+    private var currentIndex = 0
+    private var stack: Stack<Element>
+    
+    init(stack: Stack<Element>) {
+        self.stack = stack
+    }
+    
+    mutating func next() -> Element? {
+        guard currentIndex < stack.count else { return nil }
+        
+        let element = stack.get(at: currentIndex)
+        currentIndex += 1
+        return element
     }
 }

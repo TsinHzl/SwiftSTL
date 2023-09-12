@@ -8,19 +8,19 @@
 import Foundation
 
 
-public struct DoubleLinkedList<Element: Equatable>: List {
+public struct DoubleLinkedList<E: Equatable>: List {
     
-    class Node<Element: Equatable> {
-        var element: Element
-        var prev: Node<Element>?
-        var next: Node<Element>?
+    class Node<E: Equatable> {
+        var element: E
+        var prev: Node<E>?
+        var next: Node<E>?
         
         
         deinit {
             _debugPrint("--- DoubleLinkedList.Node.deinit ---")
         }
         
-        init(element: Element, prev: Node<Element>?, next: Node<Element>?) {
+        init(element: E, prev: Node<E>?, next: Node<E>?) {
             self.element = element
             self.prev = prev
             self.next = next
@@ -29,17 +29,17 @@ public struct DoubleLinkedList<Element: Equatable>: List {
     
     
     public private(set) var count: Int = 0
-    private var first: Node<Element>?
-    private var last: Node<Element>?
+    private var first: Node<E>?
+    private var last: Node<E>?
     
     
     public init() { }
     
-    public func get(at index: Int) -> Element? {
+    public func get(at index: Int) -> E? {
         return getNode(index)?.element
     }
     
-    public func set(_ element: Element, at index: Int) -> Element? {
+    public func set(_ element: E, at index: Int) -> E? {
         
         let node = getNode(index)
         let old = node?.element
@@ -48,7 +48,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
         return old
     }
     
-    public mutating func append(_ element: Element, at index: Int) {
+    public mutating func append(_ element: E, at index: Int) {
         
         do {
             try rangeCheckForAdd(at: index)
@@ -79,7 +79,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
     }
     
     @discardableResult
-    public mutating func remove(at index: Int) -> Element? {
+    public mutating func remove(at index: Int) -> E? {
         do {
             try rangeCheck(at: index)
         } catch { return nil }
@@ -104,7 +104,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
         return old
     }
     
-    public func indexOf(_ element: Element?) -> Int? {
+    public func indexOf(_ element: E?) -> Int? {
         guard let element = element else { return nil }
         
         var node = first
@@ -140,7 +140,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
 }
 
 extension DoubleLinkedList {
-    private func getNode(_ index: Int?) -> Node<Element>? {
+    private func getNode(_ index: Int?) -> Node<E>? {
         guard let index = index else { return nil }
         
         do {
@@ -164,3 +164,28 @@ extension DoubleLinkedList {
         }
     }
 }
+
+
+extension DoubleLinkedList: Sequence {
+    public func makeIterator() -> some IteratorProtocol {
+        return DoubleLinkedListIterator(linkedList: self)
+    }
+}
+
+struct DoubleLinkedListIterator<Element: Equatable>: IteratorProtocol {
+    private var currentIndex = 0
+    private var linkedList: DoubleLinkedList<Element>
+    
+    init(linkedList: DoubleLinkedList<Element>) {
+        self.linkedList = linkedList
+    }
+    
+    mutating func next() -> Element? {
+        guard currentIndex < linkedList.count else { return nil }
+        
+        let element = linkedList.get(at: currentIndex)
+        currentIndex += 1
+        return element
+    }
+}
+

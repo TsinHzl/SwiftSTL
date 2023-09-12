@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwiftSTL"
-  spec.version      = "0.0.5"
+  spec.version      = "0.0.6"
   spec.summary      = "SwiftSTL just like c++ STL library"
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -67,8 +67,8 @@ Pod::Spec.new do |spec|
   # spec.platform     = :ios, "11.0"
 
   #  When using multiple platforms
-  spec.ios.deployment_target = "11.0"
-  spec.osx.deployment_target = "10.13"
+  spec.ios.deployment_target = "13.0"
+  spec.osx.deployment_target = "10.15"
   # spec.watchos.deployment_target = "2.0"
   # spec.tvos.deployment_target = "9.0"
 

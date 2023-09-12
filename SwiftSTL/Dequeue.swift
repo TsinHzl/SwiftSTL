@@ -8,9 +8,9 @@
 import Foundation
 
 
-public struct Dequeue<Element: Equatable> {
+public struct Dequeue<E: Equatable> {
     
-    private var list = DoubleLinkedList<Element>()
+    private var list = DoubleLinkedList<E>()
     
     public var count: Int { list.count }
     
@@ -23,27 +23,27 @@ public struct Dequeue<Element: Equatable> {
         list.removeAll()
     }
     
-    public mutating func offerFront(_ element: Element) {
+    public mutating func offerFront(_ element: E) {
         list.append(element, at: 0)
     }
     
-    public mutating func pollFront() -> Element? {
+    public mutating func pollFront() -> E? {
         list.remove(at: 0)
     }
     
-    public func front() -> Element? {
+    public func front() -> E? {
         list.get(at: 0)
     }
     
-    public mutating func offerRear(_ element: Element) {
+    public mutating func offerRear(_ element: E) {
         list.append(element)
     }
     
-    public mutating func pollRear() -> Element? {
+    public mutating func pollRear() -> E? {
         list.remove(at: list.count - 1)
     }
     
-    public func rear() -> Element? {
+    public func rear() -> E? {
         list.get(at: list.count - 1)
     }
     
@@ -63,5 +63,33 @@ public struct Dequeue<Element: Equatable> {
         
         _debugPrint(str)
         #endif
+    }
+    
+    internal func get(at index: Int) -> E? {
+        return list.get(at: index)
+    }
+}
+
+
+extension Dequeue: Sequence {
+    public func makeIterator() -> some IteratorProtocol {
+        return DequeueIterator(queue: self)
+    }
+}
+
+struct DequeueIterator<Element: Equatable>: IteratorProtocol {
+    private var currentIndex = 0
+    private var queue: Dequeue<Element>
+    
+    init(queue: Dequeue<Element>) {
+        self.queue = queue
+    }
+    
+    mutating func next() -> Element? {
+        guard currentIndex < queue.count else { return nil }
+        
+        let element = queue.get(at: currentIndex)
+        currentIndex += 1
+        return element
     }
 }
