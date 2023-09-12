@@ -14,23 +14,44 @@ private func testLinkedList() {
     for i in 0 ... 10 {
         linkedList.append(i + 1)
     }
-
+    
+    for i in 11 ... 20 {
+        linkedList.append(i + 1, at: 0)
+    }
+    
     linkedList.debugPrint()
-
+    
     linkedList.remove(5)
-
+    linkedList.remove(at: 5)
+    linkedList.debugPrint()
+    
+    for _ in 0 ... 30 {
+        linkedList.remove(at: 0)
+    }
+    
     linkedList.debugPrint()
 }
 
 private func testDLinkedList() {
     var linkedList = DoubleLinkedList<Int>()
     for i in 0 ... 10 {
-        linkedList.append(i + 1)
+        linkedList.append(i + 1, at: 0)
     }
-
+    
+    linkedList.append(20, at: 5)
+    
     linkedList.debugPrint()
 
-    linkedList.remove(7)
+    linkedList.remove(at: 5)
+    linkedList.remove(6)
+    linkedList.removeFirst()
+    linkedList.removeLast()
+    
+    linkedList.debugPrint()
+    
+    for _ in 0 ... 10 {
+        linkedList.removeFirst()
+    }
 
     linkedList.debugPrint()
 }
@@ -67,4 +88,21 @@ private func testQueue() {
     queue.debugPrint()
 }
 
-testQueue()
+private func testDequeue() {
+    var queue = Dequeue<Int>()
+    for i in 0 ... 10 {
+        queue.offerFront(i + 1)
+    }
+    for i in 11 ... 20 {
+        queue.offerRear(i + 1)
+    }
+    queue.debugPrint()
+    
+    let _ = queue.pollRear()
+    let _ = queue.pollFront()
+    
+    queue.debugPrint()
+}
+
+
+testDLinkedList()

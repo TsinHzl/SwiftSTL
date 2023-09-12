@@ -1,14 +1,15 @@
 //
-//  Queue.swift
+//  Dequeue.swift
 //  SwiftSTL
 //
-//  Created by MacBook on 2023/9/12.
-//  单向队列
+//  Created by harllan on 2023/9/12.
+//  双端队列
 
 import Foundation
 
 
-public struct Queue<Element: Equatable> {
+public struct Dequeue<Element: Equatable> {
+    
     private var list = DoubleLinkedList<Element>()
     
     public var count: Int { list.count }
@@ -19,16 +20,28 @@ public struct Queue<Element: Equatable> {
         list.removeAll()
     }
     
-    public mutating func offer(_ element: Element) {
-        list.append(element)
+    public mutating func offerFront(_ element: Element) {
+        list.append(element, at: 0)
     }
     
-    public mutating func poll() -> Element? {
+    public mutating func pollFront() -> Element? {
         list.remove(at: 0)
     }
     
     public func front() -> Element? {
         list.get(at: 0)
+    }
+    
+    public mutating func offerRear(_ element: Element) {
+        list.append(element)
+    }
+    
+    public mutating func pollRear() -> Element? {
+        list.remove(at: list.count - 1)
+    }
+    
+    public func rear() -> Element? {
+        list.get(at: list.count - 1)
     }
     
     public func debugPrint() {

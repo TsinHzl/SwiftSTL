@@ -35,8 +35,7 @@ public struct LinkedList<Element: Equatable>: List {
         return getNode(at: index)?.element
     }
     
-    public func set(_ element: Element?, at index: Int) -> Element? {
-        guard let element = element else { return nil }
+    public func set(_ element: Element, at index: Int) -> Element? {
         
         let node = getNode(at: index)
         let oldElement = node?.element
@@ -46,8 +45,7 @@ public struct LinkedList<Element: Equatable>: List {
         return oldElement
     }
     
-    public mutating func append(_ element: Element?, at index: Int) {
-        guard let element = element else { return }
+    public mutating func append(_ element: Element, at index: Int) {
         
         do {
             try rangeCheckForAdd(at: index)
@@ -62,10 +60,15 @@ public struct LinkedList<Element: Equatable>: List {
         } catch { }
     }
     
-    public mutating func addFirst(_ element: Element?) {
+    public mutating func appendFirst(_ element: Element) {
         append(element, at: 0)
     }
     
+    public mutating func appendLast(_ element: Element) {
+        append(element, at: count)
+    }
+    
+    @discardableResult
     public mutating func remove(at index: Int) -> Element? {
         do {
             try rangeCheck(at: index)
@@ -83,14 +86,6 @@ public struct LinkedList<Element: Equatable>: List {
         } catch {
             return nil
         }
-    }
-    
-    public mutating func removeFirst() -> Element? {
-        return remove(at: 0)
-    }
-    
-    public mutating func removeLast() -> Element? {
-        return remove(at: count - 1)
     }
     
     public mutating func remove(_ element: Element?) {

@@ -37,8 +37,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
         return getNode(index)?.element
     }
 
-    public func set(_ element: Element?, at index: Int) -> Element? {
-        guard let element = element else { return nil }
+    public func set(_ element: Element, at index: Int) -> Element? {
         
         let node = getNode(index)
         let old = node?.element
@@ -47,8 +46,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
         return old
     }
     
-    public mutating func append(_ element: Element?, at index: Int) {
-        guard let element = element else { return }
+    public mutating func append(_ element: Element, at index: Int) {
         
         do {
             try rangeCheckForAdd(at: index)
@@ -66,8 +64,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
         } else {
             let node = getNode(index)
             let prev = node?.prev
-            let next = node?.next
-            let newNode = Node(element: element, prev: node, next: next)
+            let newNode = Node(element: element, prev: prev, next: node)
             node?.prev = newNode
             if prev == nil {
                 first = newNode
@@ -79,6 +76,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
         count += 1
     }
     
+    @discardableResult
     public mutating func remove(at index: Int) -> Element? {
         do {
             try rangeCheck(at: index)
