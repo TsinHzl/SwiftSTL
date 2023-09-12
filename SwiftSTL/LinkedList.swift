@@ -117,7 +117,7 @@ public struct LinkedList<Element: Equatable>: List {
         return isHit ? index : nil
     }
     
-    public mutating func clear() {
+    public mutating func removeAll() {
         count = 0
         first = nil
     }

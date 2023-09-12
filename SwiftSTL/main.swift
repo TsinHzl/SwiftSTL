@@ -49,4 +49,22 @@ private func testStack() {
     stack.debugPrint()
 }
 
-testStack()
+private func testQueue() {
+    var queue = Queue<Int>()
+    for i in 0 ... 10 {
+        queue.offer(i + 1)
+    }
+    queue.debugPrint()
+    
+//    for _ in 0 ... 11 {
+//        let _ = queue.poll()
+//    }
+    
+    let _ = queue.poll()
+    
+    queue.removeAll()
+    
+    queue.debugPrint()
+}
+
+testQueue()

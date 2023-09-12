@@ -54,7 +54,7 @@ protocol List {
     func indexOf(_ element: Element?) -> Int?
     
     /// 清空所有元素
-    mutating func clear()
+    mutating func removeAll()
     
     
     func outOfBounds(at index: Int) throws

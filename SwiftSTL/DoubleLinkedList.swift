@@ -116,7 +116,7 @@ public struct DoubleLinkedList<Element: Equatable>: List {
         return nil
     }
     
-    public mutating func clear() {
+    public mutating func removeAll() {
         count = 0
         first = nil
         last = nil

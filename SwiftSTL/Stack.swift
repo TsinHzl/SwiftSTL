@@ -33,7 +33,7 @@ public struct Stack<Element> {
         return list.last
     }
     
-    public mutating func clear() {
+    public mutating func removeAll() {
         list.removeAll()
     }
     
