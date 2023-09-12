@@ -31,6 +31,8 @@ public struct LinkedList<Element: Equatable>: List {
     private(set) var isEmpty: Bool = false
     
     
+    public init() { }
+    
     public func get(at index: Int) -> Element? {
         return getNode(at: index)?.element
     }

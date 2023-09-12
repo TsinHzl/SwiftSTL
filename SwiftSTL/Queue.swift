@@ -15,6 +15,9 @@ public struct Queue<Element: Equatable> {
     
     public var isEmpty: Bool { list.isEmpty }
     
+    
+    public init() { }
+    
     public mutating func removeAll() {
         list.removeAll()
     }

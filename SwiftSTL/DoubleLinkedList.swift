@@ -33,6 +33,8 @@ public struct DoubleLinkedList<Element: Equatable>: List {
     private var last: Node<Element>?
     
     
+    public init() { }
+    
     public func get(at index: Int) -> Element? {
         return getNode(index)?.element
     }

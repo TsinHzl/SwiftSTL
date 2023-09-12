@@ -16,6 +16,9 @@ public struct Stack<Element> {
     
     public var isEmpty: Bool { list.isEmpty }
     
+    
+    public init() { }
+    
     public mutating func push(_ element: Element?) {
         guard let element = element else { return }
         
