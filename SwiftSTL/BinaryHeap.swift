@@ -9,13 +9,20 @@ import Foundation
 
 
 public struct BinaryHeap<E: Comparable> {
-    fileprivate var elements = [E]()
+    internal var elements = [E]()
     
     /// 是否是小顶堆，默认不是
     private var isLittle: Bool = false
     
+    /// 堆元素个数
     public var count: Int { elements.count }
     
+    /// 堆是否为空
+    public var isEmpty: Bool { elements.isEmpty }
+    
+    /// 查看堆顶元素
+    /// 如果堆不为空就返回堆顶元素，否则返回nil
+    public var front: E? { elements.first }
     
     /// 初始化构造器
     /// - Parameters:
@@ -38,12 +45,6 @@ public struct BinaryHeap<E: Comparable> {
     public mutating func append(_ element: E) {
         elements.append(element)
         siftUp(elements.count - 1)
-    }
-    
-    /// 查看堆顶元素
-    /// - Returns: 如果堆不为空就返回堆顶元素，否则返回nil
-    public func get() -> E? {
-        return elements.first
     }
     
     /// 移除堆顶元素

@@ -15,6 +15,8 @@ As known for us, swift only includes a few data structures: Array, Dictionary, S
   - **Stack**
   - **Queue**
   - **Dequeue**
+  - **BinaryHeap**
+  - **PriorityQueue**
 
 #### Install
 
@@ -176,6 +178,39 @@ for _ in 0 ... maxNum {
 }
 
 var heap1 = BinaryHeap(isLittle: true ,elements: nums)
+
+str = ""
+for _ in 0 ... maxNum {
+    let num = heap1.remove()
+    str += "\(num!) "
+}
+print(str)
+```
+
+
+
+##### PriorityQueue
+
+```swift
+let maxNum = 10
+var heap = PriorityQueue<Int>()
+for _ in 0 ... maxNum {
+    let num = Int.random(in: 1 ... maxNum)
+    heap.append(num)
+}
+
+var str = ""
+for _ in 0 ... maxNum {
+    let num = heap.remove()
+    str += "\(num!) "
+}
+print(str)
+
+var heap1 = PriorityQueue<Int>(isLittle: true)
+for _ in 0 ... maxNum {
+    let num = Int.random(in: 1 ... maxNum)
+    heap1.append(num)
+}
 
 str = ""
 for _ in 0 ... maxNum {

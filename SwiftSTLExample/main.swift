@@ -148,8 +148,36 @@ private func testHeap() {
         str += "\(num!) "
     }
     print(str)
+}
+
+private func testPriorityQueue() {
+    let maxNum = 10
+    var heap = PriorityQueue<Int>()
+    for _ in 0 ... maxNum {
+        let num = Int.random(in: 1 ... maxNum)
+        heap.append(num)
+    }
     
+    var str = ""
+    for _ in 0 ... maxNum {
+        let num = heap.remove()
+        str += "\(num!) "
+    }
+    print(str)
+    
+    var heap1 = PriorityQueue<Int>(isLittle: true)
+    for _ in 0 ... maxNum {
+        let num = Int.random(in: 1 ... maxNum)
+        heap1.append(num)
+    }
+    
+    str = ""
+    for _ in 0 ... maxNum {
+        let num = heap1.remove()
+        str += "\(num!) "
+    }
+    print(str)
 }
 
 
-testHeap()
+testPriorityQueue()

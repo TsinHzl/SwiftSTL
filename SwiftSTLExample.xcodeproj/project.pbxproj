@@ -15,6 +15,7 @@
 		FA8180082AB016480057C583 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8180022AB016480057C583 /* Queue.swift */; };
 		FA8180092AB016480057C583 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8180032AB016480057C583 /* LinkedList.swift */; };
 		FA81800D2AB08D270057C583 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA81800C2AB08D270057C583 /* BinaryHeap.swift */; };
+		FAC0F72E2AB20C2300C063C1 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F72D2AB20C2300C063C1 /* PriorityQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		FA8180022AB016480057C583 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		FA8180032AB016480057C583 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		FA81800C2AB08D270057C583 /* BinaryHeap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeap.swift; sourceTree = "<group>"; };
+		FAC0F72D2AB20C2300C063C1 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				FA8180022AB016480057C583 /* Queue.swift */,
 				FA8180002AB016480057C583 /* Dequeue.swift */,
 				FA81800C2AB08D270057C583 /* BinaryHeap.swift */,
+				FAC0F72D2AB20C2300C063C1 /* PriorityQueue.swift */,
 			);
 			path = SwiftSTL;
 			sourceTree = SOURCE_ROOT;
@@ -154,6 +157,7 @@
 				FA8180052AB016480057C583 /* Stack.swift in Sources */,
 				FA8180062AB016480057C583 /* Dequeue.swift in Sources */,
 				FA8180072AB016480057C583 /* List.swift in Sources */,
+				FAC0F72E2AB20C2300C063C1 /* PriorityQueue.swift in Sources */,
 				FA8180042AB016480057C583 /* DoubleLinkedList.swift in Sources */,
 				FA81800D2AB08D270057C583 /* BinaryHeap.swift in Sources */,
 				FA8180092AB016480057C583 /* LinkedList.swift in Sources */,
