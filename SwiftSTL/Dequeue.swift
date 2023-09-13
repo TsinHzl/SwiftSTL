@@ -19,30 +19,43 @@ public struct Dequeue<E: Equatable> {
     
     public init() { }
     
+    /// 清空队列
     public mutating func removeAll() {
         list.removeAll()
     }
     
+    /// 从队头入队
+    /// - Parameter element: 要入队的元素
     public mutating func offerFront(_ element: E) {
         list.append(element, at: 0)
     }
     
+    /// 从队头出队
+    /// - Returns: 出队后的元素，如果队列就返回nil
     public mutating func pollFront() -> E? {
         list.remove(at: 0)
     }
     
+    /// 查看队头元素
+    /// - Returns: 如果队列为空则返回nil
     public func front() -> E? {
         list.get(at: 0)
     }
     
+    /// 从队尾入队
+    /// - Parameter element: 要入队的元素
     public mutating func offerRear(_ element: E) {
         list.append(element)
     }
     
+    /// 从队尾出队
+    /// - Returns: 如果队列为空则返回nil
     public mutating func pollRear() -> E? {
         list.remove(at: list.count - 1)
     }
     
+    /// 查看队尾元素
+    /// - Returns: 如果队列为空则返回nil
     public func rear() -> E? {
         list.get(at: list.count - 1)
     }
@@ -71,6 +84,7 @@ public struct Dequeue<E: Equatable> {
 }
 
 
+// MARK: - for iterator
 extension Dequeue: Sequence {
     public func makeIterator() -> some IteratorProtocol {
         return DequeueIterator(queue: self)

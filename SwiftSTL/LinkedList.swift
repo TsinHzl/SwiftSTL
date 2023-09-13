@@ -10,8 +10,6 @@ import Foundation
 
 public struct LinkedList<E: Equatable>: List {
     
-//    public typealias Element = Element
-    
     class Node<E: Equatable> {
         var element: E
         var next: Node?
@@ -30,17 +28,27 @@ public struct LinkedList<E: Equatable>: List {
     private var first: Node<E>?
     
     
+    /// 链表的个数
     public private(set) var count: Int = 0
     
+    /// 链表是否为空
     public private(set) var isEmpty: Bool = false
     
     
     public init() { }
     
+    /// 获取指定index位置的元素
+    /// - Parameter index: 索引
+    /// - Returns: 没有的话就返回nil
     public func get(at index: Int) -> E? {
         return getNode(at: index)?.element
     }
     
+    /// 设置指定index位置的元素
+    /// - Parameters:
+    ///   - element: 要设置的新元素
+    ///   - index: 索引
+    /// - Returns: 返回被替换掉的元素，没被替换的话，就返回nil
     public func set(_ element: E, at index: Int) -> E? {
         
         let node = getNode(at: index)
@@ -51,6 +59,10 @@ public struct LinkedList<E: Equatable>: List {
         return oldElement
     }
     
+    /// 在指定位置添加元素
+    /// - Parameters:
+    ///   - element: 要添加的元素
+    ///   - index: 索引
     public mutating func append(_ element: E, at index: Int) {
         
         do {
@@ -67,6 +79,9 @@ public struct LinkedList<E: Equatable>: List {
     }
     
     @discardableResult
+    /// 移除指定index位置的元素
+    /// - Parameter index: 索引
+    /// - Returns: 返回移除的元素，没有的话，就返回nil
     public mutating func remove(at index: Int) -> E? {
         do {
             try rangeCheck(at: index)
@@ -86,12 +101,17 @@ public struct LinkedList<E: Equatable>: List {
         }
     }
     
+    /// 移除指定元素
+    /// - Parameter element: 要移除的元素
     public mutating func remove(_ element: E?) {
         if let index = indexOf(element) {
             let _ = remove(at: index)
         }
     }
     
+    /// 获取指定元素的索引
+    /// - Parameter element: 元素
+    /// - Returns: 返回索引index，没有的话就返回nil
     public func indexOf(_ element: E?) -> Int? {
         guard let element = element else { return nil }
         
@@ -110,6 +130,7 @@ public struct LinkedList<E: Equatable>: List {
         return isHit ? index : nil
     }
     
+    /// 清空链表
     public mutating func removeAll() {
         count = 0
         first = nil
@@ -150,6 +171,7 @@ extension LinkedList {
 }
 
 
+// MARK: - for iterator
 extension LinkedList: Sequence {
     public func makeIterator() -> some IteratorProtocol {
         return LinkedListIterator(linkedList: self)

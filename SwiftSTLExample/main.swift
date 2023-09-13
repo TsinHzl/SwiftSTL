@@ -119,5 +119,37 @@ private func testDequeue() {
     queue.debugPrint()
 }
 
+private func testHeap() {
+    let maxNum = 10
+    var heap = BinaryHeap<Int>(isLittle: false)
+    for _ in 0 ... maxNum {
+        let num = Int.random(in: 1 ... maxNum)
+        heap.append(num)
+    }
+    
+    var str = ""
+    for _ in 0 ... maxNum {
+        let num = heap.remove()
+        str += "\(num!) "
+    }
+    print(str)
+    
+    var nums = [Int]()
+    for _ in 0 ... maxNum {
+        let num = Int.random(in: 1 ... maxNum)
+        nums.append(num)
+    }
+    
+    var heap1 = BinaryHeap(isLittle: true ,elements: nums)
+    
+    str = ""
+    for _ in 0 ... maxNum {
+        let num = heap1.remove()
+        str += "\(num!) "
+    }
+    print(str)
+    
+}
 
-testDequeue()
+
+testHeap()

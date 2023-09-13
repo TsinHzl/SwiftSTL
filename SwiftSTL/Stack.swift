@@ -3,7 +3,7 @@
 //  SwiftSTL
 //
 //  Created by harllan on 2023/9/11.
-//  栈
+//  栈  FILO - First In Last Out
 
 import Foundation
 
@@ -12,19 +12,23 @@ public struct Stack<E> {
     private var list = [E]()
     
     
+    /// 当前栈个数
     public var count: Int { list.count }
     
+    /// 当前栈是否为空
     public var isEmpty: Bool { list.isEmpty }
     
     
     public init() { }
     
-    public mutating func push(_ element: E?) {
-        guard let element = element else { return }
-        
+    /// 入栈
+    /// - Parameter element: 要入栈的元素
+    public mutating func push(_ element: E) {
         list.append(element)
     }
     
+    /// 出栈
+    /// - Returns: 如果栈为空则返回nil
     @discardableResult
     public mutating func pop() -> E? {
         if list.count == 0 { return nil }
@@ -32,10 +36,13 @@ public struct Stack<E> {
         return list.remove(at: list.count - 1)
     }
     
+    /// 查看栈顶元素
+    /// - Returns: 如果栈为空则返回nil
     public mutating func top() -> E? {
         return list.last
     }
     
+    /// 清空栈
     public mutating func removeAll() {
         list.removeAll()
     }
@@ -65,6 +72,7 @@ public struct Stack<E> {
 }
 
 
+// MARK: - for iterator
 extension Stack: Sequence {
     public func makeIterator() -> some IteratorProtocol {
         return StackIterator(stack: self)

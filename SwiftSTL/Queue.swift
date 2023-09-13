@@ -3,7 +3,7 @@
 //  SwiftSTL
 //
 //  Created by MacBook on 2023/9/12.
-//  单向队列
+//  单向队列  FIFO - First In First Out
 
 import Foundation
 
@@ -18,18 +18,25 @@ public struct Queue<E: Equatable> {
     
     public init() { }
     
+    /// 清空队列
     public mutating func removeAll() {
         list.removeAll()
     }
     
+    /// 入队： 从队尾入队
+    /// - Parameter element: 要入队的元素
     public mutating func offer(_ element: E) {
         list.append(element)
     }
     
+    /// 出队： 从队头出队
+    /// - Returns: 如果队列为空则返回nil
     public mutating func poll() -> E? {
         list.remove(at: 0)
     }
     
+    /// 查看队头元素
+    /// - Returns: 如果队列为空则返回nil
     public func front() -> E? {
         list.get(at: 0)
     }
@@ -58,6 +65,7 @@ public struct Queue<E: Equatable> {
 }
 
 
+// MARK: - for iterator
 extension Queue: Sequence {
     public func makeIterator() -> some IteratorProtocol {
         return QueueIterator(queue: self)

@@ -35,10 +35,18 @@ public struct DoubleLinkedList<E: Equatable>: List {
     
     public init() { }
     
+    /// 获取指定index位置的元素
+    /// - Parameter index: 索引
+    /// - Returns: 没有的话就返回空
     public func get(at index: Int) -> E? {
         return getNode(index)?.element
     }
     
+    /// 设置指定index位置的元素
+    /// - Parameters:
+    ///   - element: 要设置的元素
+    ///   - index: 所以呢
+    /// - Returns: 返回被替换的元素，为nil的话，就证明没被替换掉
     public func set(_ element: E, at index: Int) -> E? {
         
         let node = getNode(index)
@@ -48,6 +56,10 @@ public struct DoubleLinkedList<E: Equatable>: List {
         return old
     }
     
+    /// 在指定index位置添加元素
+    /// - Parameters:
+    ///   - element: 要添加的元素
+    ///   - index: 索引
     public mutating func append(_ element: E, at index: Int) {
         
         do {
@@ -78,6 +90,9 @@ public struct DoubleLinkedList<E: Equatable>: List {
         count += 1
     }
     
+    /// 移除指定index位置的元素
+    /// - Parameter index: 索引
+    /// - Returns: 返回被移除的元素，如果没有就返回nil
     @discardableResult
     public mutating func remove(at index: Int) -> E? {
         do {
@@ -104,6 +119,9 @@ public struct DoubleLinkedList<E: Equatable>: List {
         return old
     }
     
+    /// 获取元素的索引
+    /// - Parameter element: 要获取索引的元素
+    /// - Returns: 返回元素的索引，元素不存在的话，就返回nil
     public func indexOf(_ element: E?) -> Int? {
         guard let element = element else { return nil }
         
@@ -116,6 +134,7 @@ public struct DoubleLinkedList<E: Equatable>: List {
         return nil
     }
     
+    /// 清空链表
     public mutating func removeAll() {
         count = 0
         first = nil
@@ -166,6 +185,7 @@ extension DoubleLinkedList {
 }
 
 
+// MARK: - for iterator
 extension DoubleLinkedList: Sequence {
     public func makeIterator() -> some IteratorProtocol {
         return DoubleLinkedListIterator(linkedList: self)
