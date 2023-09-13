@@ -150,3 +150,38 @@ let _ = deQueue.pollFront()
 deQueue.debugPrint()
 ```
 
+
+
+##### BinaryHeap
+
+```swift
+let maxNum = 10
+var heap = BinaryHeap<Int>()
+for _ in 0 ... maxNum {
+    let num = Int.random(in: 1 ... maxNum)
+    heap.append(num)
+}
+
+var str = ""
+for _ in 0 ... maxNum {
+    let num = heap.remove()
+    str += "\(num!) "
+}
+print(str)
+
+var nums = [Int]()
+for _ in 0 ... maxNum {
+    let num = Int.random(in: 1 ... maxNum)
+    nums.append(num)
+}
+
+var heap1 = BinaryHeap(isLittle: true ,elements: nums)
+
+str = ""
+for _ in 0 ... maxNum {
+    let num = heap1.remove()
+    str += "\(num!) "
+}
+print(str)
+```
+
