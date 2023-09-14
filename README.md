@@ -9,7 +9,7 @@ As known for us, swift only includes a few data structures: Array, Dictionary, S
 
 #### Includes
 
-- it includes **some common data structures** such as:
+- it includes **some common data structures : **
   - **LinkedList**
   - **DoubleLinkedList**
   - **Stack**
@@ -23,7 +23,7 @@ As known for us, swift only includes a few data structures: Array, Dictionary, S
 ##### cocoapods
 
 - **pod 'SwiftSTL'**
-  - or specify a version:  **pod 'SwiftSTL', '~> 0.0.6'**
+  - or specify a version:  **pod 'SwiftSTL', '~> 1.0.0'**
 
 
 ##### download framwork
