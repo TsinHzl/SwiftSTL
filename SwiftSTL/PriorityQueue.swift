@@ -20,8 +20,10 @@ struct PriorityQueue<E: Comparable> {
     /// 查看堆顶元素
     public var front: E? { heap.front }
     
-    public init(isLittle: Bool = false) {
-        self.heap = BinaryHeap(isLittle: isLittle)
+    /// 初始化构造器
+    /// - Parameter type: 大小顶堆类型，默认是小顶堆
+    public init(type: BinaryHeap<E>.HeapType = .min) {
+        self.heap = BinaryHeap(type: type)
     }
     
     /// 清空堆

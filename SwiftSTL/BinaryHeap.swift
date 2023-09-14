@@ -9,10 +9,18 @@ import Foundation
 
 
 public struct BinaryHeap<E: Comparable> {
+    
+    public enum HeapType {
+        case max
+        case min
+    }
+    
+    
     internal var elements = [E]()
     
-    /// 是否是小顶堆，默认不是
-    private var isLittle: Bool = false
+    /// 类型， 默认是大顶堆
+    private var type = HeapType.max
+    private var isMin: Bool { type == .min }
     
     /// 堆元素个数
     public var count: Int { elements.count }
@@ -28,8 +36,8 @@ public struct BinaryHeap<E: Comparable> {
     /// - Parameters:
     ///   - isLittle: 是否是小顶堆，默认为false，即为大顶堆
     ///   - elements: 如果这个值不是空的，就会批量建堆，批量建堆时间复杂度为O(logn)
-    public init(isLittle: Bool = false, elements: [E] = [E]()) {
-        self.isLittle = isLittle
+    public init(type: HeapType = HeapType.max, elements: [E] = [E]()) {
+        self.type = type
         self.elements = elements
         
         heapifyDown()
@@ -112,8 +120,8 @@ public struct BinaryHeap<E: Comparable> {
             let pidx = (idx - 1) >> 1
             let p = elements[pidx]
             
-            if isLittle, element > elements[pidx] { break }
-            if !isLittle, element <= elements[pidx] { break }
+            if isMin, element > elements[pidx] { break }
+            if !isMin, element <= elements[pidx] { break }
             
             elements[idx] = p
             idx = pidx
@@ -134,14 +142,14 @@ public struct BinaryHeap<E: Comparable> {
             var child = elements[cidx]
             let rightIdx = cidx + 1
             if rightIdx < elements.count &&
-                ((isLittle && child > elements[rightIdx]) ||
-                 (!isLittle && child < elements[rightIdx])) {
+                ((isMin && child > elements[rightIdx]) ||
+                 (!isMin && child < elements[rightIdx])) {
                 cidx = rightIdx
                 child = elements[rightIdx]
             }
             
-            if isLittle, child >= element { break }
-            if !isLittle, child <= element { break }
+            if isMin, child >= element { break }
+            if !isMin, child <= element { break }
             
             elements[idx] = child
             idx = cidx

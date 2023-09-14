@@ -121,7 +121,7 @@ private func testDequeue() {
 
 private func testHeap() {
     let maxNum = 10
-    var heap = BinaryHeap<Int>(isLittle: false)
+    var heap = BinaryHeap<Int>()
     for _ in 0 ... maxNum {
         let num = Int.random(in: 1 ... maxNum)
         heap.append(num)
@@ -140,7 +140,7 @@ private func testHeap() {
         nums.append(num)
     }
     
-    var heap1 = BinaryHeap(isLittle: true ,elements: nums)
+    var heap1 = BinaryHeap(type: .min ,elements: nums)
     
     str = ""
     for _ in 0 ... maxNum {
@@ -165,7 +165,7 @@ private func testPriorityQueue() {
     }
     print(str)
     
-    var heap1 = PriorityQueue<Int>(isLittle: true)
+    var heap1 = PriorityQueue<Int>(type: .max)
     for _ in 0 ... maxNum {
         let num = Int.random(in: 1 ... maxNum)
         heap1.append(num)
@@ -180,4 +180,4 @@ private func testPriorityQueue() {
 }
 
 
-testPriorityQueue()
+testHeap()

@@ -177,7 +177,7 @@ for _ in 0 ... maxNum {
     nums.append(num)
 }
 
-var heap1 = BinaryHeap(isLittle: true ,elements: nums)
+var heap1 = BinaryHeap(type: .min ,elements: nums)
 
 str = ""
 for _ in 0 ... maxNum {
@@ -206,7 +206,7 @@ for _ in 0 ... maxNum {
 }
 print(str)
 
-var heap1 = PriorityQueue<Int>(isLittle: true)
+var heap1 = PriorityQueue<Int>(type: .max)
 for _ in 0 ... maxNum {
     let num = Int.random(in: 1 ... maxNum)
     heap1.append(num)
