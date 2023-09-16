@@ -1,5 +1,5 @@
 # SwiftSTL
-**SwiftSTL just like c++ STL library**
+**SwiftSTL is just like c++ STL library**
 
 
 
