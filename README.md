@@ -23,7 +23,7 @@ As known for us, swift only includes a few data structures: Array, Dictionary, S
 
 #### Includes
 
-- it includes **some common data structures : **
+- it includes **some common data structures :**
   - **LinkedList**
   - **DoubleLinkedList**
   - **Stack**
