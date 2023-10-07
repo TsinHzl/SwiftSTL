@@ -3,6 +3,20 @@
 
 
 
+- [Description](#Description)
+- [Includes](#Includes)
+- [Installation](#Installation)
+- [Usage](#Usage)
+  - [LinkedList](#LinkedList)
+  - [DoubleLinkedList](#DoubleLinkedList)
+  - [Stack](#Stack)
+  - [Queue](#Queue)
+  - [Dequeue](#Dequeue)
+  - [BinaryHeap](#BinaryHeap)
+  - [PriorityQueue](#PriorityQueue)
+
+
+
 #### Description
 
 As known for us, swift only includes a few data structures: Array, Dictionary, Set. but there aren't any other common data structures, **so I just want to make it better for using.  Sometimes, you can code more efficient with more other data structures**
@@ -154,7 +168,7 @@ deQueue.debugPrint()
 
 
 
-##### BinaryHeap
+###### BinaryHeap
 
 ```swift
 let maxNum = 10
@@ -189,7 +203,7 @@ print(str)
 
 
 
-##### PriorityQueue
+###### PriorityQueue
 
 ```swift
 let maxNum = 10
