@@ -18,7 +18,7 @@ As known for us, swift only includes a few data structures: Array, Dictionary, S
   - **BinaryHeap**
   - **PriorityQueue**
 
-#### Install
+#### Installation
 
 ##### cocoapods
 
