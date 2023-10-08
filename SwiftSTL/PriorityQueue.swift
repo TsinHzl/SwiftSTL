@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct PriorityQueue<E: Comparable> {
+public struct PriorityQueue<E: Comparable> {
     fileprivate var heap: BinaryHeap<E>
     
     /// 堆元素个数

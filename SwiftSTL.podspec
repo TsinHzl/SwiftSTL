@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SwiftSTL"
-  spec.version      = "1.3"
+  spec.version      = "1.5"
   spec.summary      = "SwiftSTL just like c++ STL library"
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?

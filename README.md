@@ -41,7 +41,7 @@ As known for us, swift only includes a few data structures: Array, Dictionary, S
 ##### cocoapods
 
 - **pod 'SwiftSTL'**
-  - or specify a version:  **pod 'SwiftSTL', '~> 1.3'**
+  - or specify a version:  **pod 'SwiftSTL', '~> 1.6'**
 
 
 ##### download framwork
