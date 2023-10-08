@@ -1,57 +1,52 @@
 # SwiftSTL
-**SwiftSTL is similar to the C++ STL library**
-
-
-
-**[中文版](https://github.com/TsinHzl/SwiftSTL/blob/main/README-zh.md)**
-
-
+**SwiftSTL类似于C++的STL**
 
 - [Description](#Description)
 - [Includes](#Includes)
 - [Installation](#Installation)
 - [Usage](#Usage)
-  - [LinkedList](#LinkedList)
-  - [DoubleLinkedList](#DoubleLinkedList)
-  - [Stack](#Stack)
-  - [Queue](#Queue)
-  - [Dequeue](#Dequeue)
-  - [BinaryHeap](#BinaryHeap)
-  - [PriorityQueue](#PriorityQueue)
+  - [LinkedList - 链表](#LinkedList)
+  - [DoubleLinkedList - 双向链表](#DoubleLinkedList)
+  - [Stack - 栈](#Stack)
+  - [Queue - 队列](#Queue)
+  - [Dequeue - 双向队列](#Dequeue)
+  - [BinaryHeap - 二叉堆](#BinaryHeap)
+  - [PriorityQueue - 大小顶堆](#PriorityQueue)
 
 
 
 #### Description
 
-As known for us, swift only includes a few data structures: Array, Dictionary, Set. but there aren't any other common data structures, **so I just want to make it better for using.  Sometimes, you can code more efficient with more other data structures**
+大家都知道，swift仅仅包含了比较少的一些常见数据结构，并不像java那样，拥有比较齐全的常见数据结构。**因此我这里就为了方便开发，实现了剩余常见的数据结构**
 
 #### Includes
 
 - it includes **some common data structures :**
-  - **LinkedList**
-  - **DoubleLinkedList**
-  - **Stack**
-  - **Queue**
-  - **Dequeue**
-  - **BinaryHeap**
-  - **PriorityQueue**
+- 包含了**以下的常见数据结构：**
+  - **LinkedList - 链表**
+  - **DoubleLinkedList - 双向链表**
+  - **Stack - 栈**
+  - **Queue - 队列**
+  - **Dequeue - 竖向队列**
+  - **BinaryHeap - 二叉堆**
+  - **PriorityQueue - 大小顶堆**
 
 #### Installation
 
 ##### cocoapods
 
 - **pod 'SwiftSTL'**
-  - or specify a version:  **pod 'SwiftSTL', '~> 1.0.0'**
+  - 或指定一个版本号:  **pod 'SwiftSTL', '~> 1.0.0'**
 
 
-##### download framwork
+##### 下载 framwork
 
-- download the repo.
-- and add **SwiftSTL** library to your project
+- 下载仓库代码
+- 然后添加**SwiftSTL** 库到你的项目里即可
 
 #### Usage
 
-##### Import library
+##### 导入 library
 
 ```swift
 import SwiftSTL
