@@ -173,12 +173,12 @@ extension LinkedList {
 
 // MARK: - for iterator
 extension LinkedList: Sequence {
-    public func makeIterator() -> some IteratorProtocol {
+    public func makeIterator() -> LinkedListIterator<E> {
         return LinkedListIterator(linkedList: self)
     }
 }
 
-struct LinkedListIterator<Element: Equatable>: IteratorProtocol {
+public struct LinkedListIterator<Element: Equatable>: IteratorProtocol {
     private var currentIndex = 0
     private var linkedList: LinkedList<Element>
     
@@ -186,7 +186,7 @@ struct LinkedListIterator<Element: Equatable>: IteratorProtocol {
         self.linkedList = linkedList
     }
     
-    mutating func next() -> Element? {
+    public mutating func next() -> Element? {
         guard currentIndex < linkedList.count else { return nil }
         
         let element = linkedList.get(at: currentIndex)

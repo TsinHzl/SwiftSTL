@@ -180,4 +180,4 @@ private func testPriorityQueue() {
 }
 
 
-testHeap()
+testPriorityQueue()

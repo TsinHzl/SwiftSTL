@@ -47,12 +47,12 @@ struct PriorityQueue<E: Comparable> {
 
 // MARK: - for iterator
 extension PriorityQueue: Sequence {
-    public func makeIterator() -> some IteratorProtocol {
+    public func makeIterator() -> PriorityQueueIterator<E> {
         return PriorityQueueIterator(heap: self)
     }
 }
 
-struct PriorityQueueIterator<Element: Comparable>: IteratorProtocol {
+public struct PriorityQueueIterator<Element: Comparable>: IteratorProtocol {
     private var currentIndex = 0
     private var heap: PriorityQueue<Element>
     
@@ -60,7 +60,7 @@ struct PriorityQueueIterator<Element: Comparable>: IteratorProtocol {
         self.heap = heap
     }
     
-    mutating func next() -> Element? {
+    public mutating func next() -> Element? {
         guard currentIndex < heap.count else { return nil }
         
         let element = heap.heap.elements[currentIndex]

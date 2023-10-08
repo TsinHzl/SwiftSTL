@@ -86,12 +86,12 @@ public struct Dequeue<E: Equatable> {
 
 // MARK: - for iterator
 extension Dequeue: Sequence {
-    public func makeIterator() -> some IteratorProtocol {
+    public func makeIterator() -> DequeueIterator<E> {
         return DequeueIterator(queue: self)
     }
 }
 
-struct DequeueIterator<Element: Equatable>: IteratorProtocol {
+public struct DequeueIterator<Element: Equatable>: IteratorProtocol {
     private var currentIndex = 0
     private var queue: Dequeue<Element>
     
@@ -99,7 +99,7 @@ struct DequeueIterator<Element: Equatable>: IteratorProtocol {
         self.queue = queue
     }
     
-    mutating func next() -> Element? {
+    public mutating func next() -> Element? {
         guard currentIndex < queue.count else { return nil }
         
         let element = queue.get(at: currentIndex)

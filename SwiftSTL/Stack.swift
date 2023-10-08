@@ -74,12 +74,12 @@ public struct Stack<E> {
 
 // MARK: - for iterator
 extension Stack: Sequence {
-    public func makeIterator() -> some IteratorProtocol {
+    public func makeIterator() -> StackIterator<E> {
         return StackIterator(stack: self)
     }
 }
 
-struct StackIterator<Element>: IteratorProtocol {
+public struct StackIterator<Element>: IteratorProtocol {
     private var currentIndex = 0
     private var stack: Stack<Element>
     
@@ -87,7 +87,7 @@ struct StackIterator<Element>: IteratorProtocol {
         self.stack = stack
     }
     
-    mutating func next() -> Element? {
+    public mutating func next() -> Element? {
         guard currentIndex < stack.count else { return nil }
         
         let element = stack.get(at: currentIndex)

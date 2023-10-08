@@ -177,12 +177,12 @@ public struct BinaryHeap<E: Comparable> {
 
 // MARK: - for iterator
 extension BinaryHeap: Sequence {
-    public func makeIterator() -> some IteratorProtocol {
+    public func makeIterator() -> BinaryHeapIterator<E> {
         return BinaryHeapIterator(heap: self)
     }
 }
 
-struct BinaryHeapIterator<Element: Comparable>: IteratorProtocol {
+public struct BinaryHeapIterator<Element: Comparable>: IteratorProtocol {
     private var currentIndex = 0
     private var heap: BinaryHeap<Element>
     
@@ -190,7 +190,7 @@ struct BinaryHeapIterator<Element: Comparable>: IteratorProtocol {
         self.heap = heap
     }
     
-    mutating func next() -> Element? {
+    mutating public func next() -> Element? {
         guard currentIndex < heap.count else { return nil }
         
         let element = heap.elements[currentIndex]

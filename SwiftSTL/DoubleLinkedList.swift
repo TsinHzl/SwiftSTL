@@ -187,12 +187,12 @@ extension DoubleLinkedList {
 
 // MARK: - for iterator
 extension DoubleLinkedList: Sequence {
-    public func makeIterator() -> some IteratorProtocol {
+    public func makeIterator() -> DoubleLinkedListIterator<E> {
         return DoubleLinkedListIterator(linkedList: self)
     }
 }
 
-struct DoubleLinkedListIterator<Element: Equatable>: IteratorProtocol {
+public struct DoubleLinkedListIterator<Element: Equatable>: IteratorProtocol {
     private var currentIndex = 0
     private var linkedList: DoubleLinkedList<Element>
     
@@ -200,7 +200,7 @@ struct DoubleLinkedListIterator<Element: Equatable>: IteratorProtocol {
         self.linkedList = linkedList
     }
     
-    mutating func next() -> Element? {
+    public mutating func next() -> Element? {
         guard currentIndex < linkedList.count else { return nil }
         
         let element = linkedList.get(at: currentIndex)
