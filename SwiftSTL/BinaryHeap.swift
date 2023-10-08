@@ -34,7 +34,7 @@ public struct BinaryHeap<E: Comparable> {
     
     /// 初始化构造器
     /// - Parameters:
-    ///   - isLittle: 是否是小顶堆，默认为false，即为大顶堆
+    ///   - type: 对类型，默认是.max   大顶堆
     ///   - elements: 如果这个值不是空的，就会批量建堆，批量建堆时间复杂度为O(logn)
     public init(type: HeapType = HeapType.max, elements: [E] = [E]()) {
         self.type = type
@@ -83,9 +83,13 @@ public struct BinaryHeap<E: Comparable> {
     }
     
     /// 遍历堆元素
-    public func traversal() {
+    public func traversal(travaler: ((E) -> ())? = nil) {
         elements.forEach { e in
-            _debugPrint(e)
+            if travaler != nil {
+                travaler?(e)
+            } else {
+                _debugPrint(e)
+            }
         }
     }
     
