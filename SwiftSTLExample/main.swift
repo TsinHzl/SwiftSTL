@@ -176,6 +176,10 @@ private func testPriorityQueue() {
         let num = heap1.remove()
         str += "\(num!) "
     }
+    
+    heap1.forEach { n in
+        print(n)
+    }
     print(str)
 }
 
