@@ -142,7 +142,6 @@ public struct DoubleLinkedList<E: Equatable>: List {
     }
     
     public func debugPrint() {
-        #if DEBUG
         var node = first
         var str = ""
         while node != nil {
@@ -154,7 +153,6 @@ public struct DoubleLinkedList<E: Equatable>: List {
             node = node?.next
         }
         _debugPrint(str)
-        #endif
     }
 }
 

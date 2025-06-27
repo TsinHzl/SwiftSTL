@@ -42,7 +42,6 @@ public struct Queue<E: Equatable> {
     }
     
     public func debugPrint() {
-        #if DEBUG
         let count = list.count
         var str = ""
         for i in 0 ..< count {
@@ -56,7 +55,6 @@ public struct Queue<E: Equatable> {
         }
         
         _debugPrint(str)
-        #endif
     }
     
     internal func get(at index: Int) -> E? {

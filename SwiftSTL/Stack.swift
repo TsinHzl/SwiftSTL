@@ -48,7 +48,6 @@ public struct Stack<E> {
     }
     
     public func debugPrint() {
-        #if DEBUG
         let count = list.count
         var str = ""
         for i in 0 ..< count {
@@ -63,7 +62,6 @@ public struct Stack<E> {
         }
         
         _debugPrint(str)
-        #endif
     }
     
     internal func get(at index: Int) -> E? {

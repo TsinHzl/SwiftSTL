@@ -163,14 +163,12 @@ public struct BinaryHeap<E: Comparable> {
     }
     
     public func debugPrint() {
-        #if DEBUG
         var str = ""
         for e in elements {
             str += "\(e) "
         }
         
         _debugPrint(str)
-        #endif
     }
 }
 
