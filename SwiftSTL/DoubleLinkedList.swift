@@ -10,17 +10,17 @@ import Foundation
 
 public struct DoubleLinkedList<E: Equatable>: List {
     
-    class Node<E: Equatable> {
-        var element: E
-        var prev: Node<E>?
-        var next: Node<E>?
+    class Node<Element: Equatable> {
+        var element: Element
+        var prev: Node<Element>?
+        var next: Node<Element>?
         
         
         deinit {
             _debugPrint("--- DoubleLinkedList.Node.deinit ---")
         }
         
-        init(element: E, prev: Node<E>?, next: Node<E>?) {
+        init(element: Element, prev: Node<Element>?, next: Node<Element>?) {
             self.element = element
             self.prev = prev
             self.next = next

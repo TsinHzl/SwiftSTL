@@ -10,8 +10,8 @@ import Foundation
 
 public struct LinkedList<E: Equatable>: List {
     
-    class Node<E: Equatable> {
-        var element: E
+    class Node<Element: Equatable> {
+        var element: Element
         var next: Node?
         
         
@@ -19,7 +19,7 @@ public struct LinkedList<E: Equatable>: List {
             _debugPrint("--- LinkedList.Node.deinit ---")
         }
         
-        init(element: E, next: Node?) {
+        init(element: Element, next: Node?) {
             self.element = element
             self.next = next
         }

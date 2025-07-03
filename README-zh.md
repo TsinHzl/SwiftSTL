@@ -36,7 +36,7 @@
 ##### cocoapods
 
 - **pod 'SwiftSTL'**
-  - 或指定一个版本号:  **pod 'SwiftSTL', '~> 1.7'**
+  - 或指定一个版本号:  **pod 'SwiftSTL', '~> 1.8'**
 
 
 ##### 下载 framwork
