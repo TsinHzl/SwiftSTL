@@ -151,7 +151,7 @@ extension DoubleLinkedList: Sequence {
     public struct Iterator: IteratorProtocol {
         private var currentNode: DoubleLinkedList.Node<E>?
         
-        init(currentNode: DoubleLinkedList.Node<E>?) {
+        private init(currentNode: DoubleLinkedList.Node<E>?) {
             self.currentNode = currentNode
         }
         

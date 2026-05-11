@@ -127,7 +127,7 @@ extension LinkedList: Sequence {
         // 持有节点指针而非索引，避免 O(n²)
         private var currentNode: LinkedList.Node<E>?
         
-        init(currentNode: LinkedList.Node<E>?) {
+        private init(currentNode: LinkedList.Node<E>?) {
             self.currentNode = currentNode
         }
         
