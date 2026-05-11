@@ -1,235 +1,193 @@
 # SwiftSTL
-**SwiftSTL类似于C++的STL**
 
-- [Description](#Description)
-- [Includes](#Includes)
-- [Installation](#Installation)
-- [Usage](#Usage)
-  - [LinkedList - 链表](#LinkedList)
-  - [DoubleLinkedList - 双向链表](#DoubleLinkedList)
-  - [Stack - 栈](#Stack)
-  - [Queue - 队列](#Queue)
-  - [Dequeue - 双向队列](#Dequeue)
-  - [BinaryHeap - 二叉堆](#BinaryHeap)
-  - [PriorityQueue - 大小顶堆](#PriorityQueue)
+**SwiftSTL 是常见数据结构的 Swift 实现，类似于 C++ STL 库。**
 
+**[English](https://github.com/TsinHzl/SwiftSTL/blob/main/README.md)**
 
+- [简介](#简介)
+- [包含结构](#包含结构)
+- [安装](#安装)
+- [使用方法](#使用方法)
+  - [LinkedList - 单向链表](#linkedlist---单向链表)
+  - [DoubleLinkedList - 双向链表](#doublelinkedlist---双向链表)
+  - [Stack - 栈](#stack---栈)
+  - [Queue - 队列](#queue---队列)
+  - [Dequeue - 双端队列](#dequeue---双端队列)
+  - [BinaryHeap - 二叉堆](#binaryheap---二叉堆)
+  - [PriorityQueue - 优先队列](#priorityqueue---优先队列)
 
-#### Description
+## 简介
 
-大家都知道，swift仅仅包含了比较少的一些常见数据结构，并不像java那样，拥有比较齐全的常见数据结构。**因此我这里就为了方便开发，实现了剩余常见的数据结构**
+Swift 标准库只提供了 `Array`、`Dictionary` 和 `Set`。SwiftSTL 补充了最常用的数据结构，提供简洁的泛型 API。
 
-#### Includes
+## 包含结构
 
-- it includes **some common data structures :**
-- 包含了**以下的常见数据结构：**
-  - **LinkedList - 链表**
-  - **DoubleLinkedList - 双向链表**
-  - **Stack - 栈**
-  - **Queue - 队列**
-  - **Dequeue - 竖向队列**
-  - **BinaryHeap - 二叉堆**
-  - **PriorityQueue - 大小顶堆**
+| 结构 | 说明 |
+|------|------|
+| `LinkedList` | 单向链表 |
+| `DoubleLinkedList` | 双向链表 |
+| `Stack` | 先进后出栈 |
+| `Queue` | 先进先出队列 |
+| `Dequeue` | 双端队列 |
+| `BinaryHeap` | 大顶堆 / 小顶堆 |
+| `PriorityQueue` | 基于二叉堆的优先队列 |
 
-#### Installation
+所有类型均遵循 `Sequence` 协议，可直接使用 `for-in`、`map`、`filter` 等。
 
-##### cocoapods
+## 安装
 
-- **pod 'SwiftSTL'**
-  - 或指定一个版本号:  **pod 'SwiftSTL', '~> 1.8'**
+### CocoaPods
 
+```ruby
+pod 'SwiftSTL', '~> 1.9'
+```
 
-##### 下载 framwork
+### 手动集成
 
-- 下载仓库代码
-- 然后添加**SwiftSTL** 库到你的项目里即可
+克隆仓库，将 `SwiftSTL/` 文件夹拖入 Xcode 项目即可。
 
-#### Usage
-
-##### 导入 library
+## 使用方法
 
 ```swift
 import SwiftSTL
 ```
 
+### LinkedList - 单向链表
 
-
-##### Use
-
-###### LinkedList
+头部插入 O(1)，随机访问 O(n)。
 
 ```swift
-var linkedList = LinkedList<Int>()
-for i in 0 ... 10 {
-    linkedList.append(i + 1)
-}
+var list = LinkedList<Int>()
+for i in 1 ... 11 { list.append(i) }
+for i in 12 ... 21 { list.append(i, at: 0) }
 
-for i in 11 ... 20 {
-    linkedList.append(i + 1, at: 0)
-}
+list.debugPrint()
 
-linkedList.debugPrint()
+list.remove(5)
+list.remove(at: 5)
+list.debugPrint()
 
-linkedList.remove(5)
-linkedList.remove(at: 5)
-linkedList.debugPrint()
-
-for _ in 0 ... 30 {
-    linkedList.remove(at: 0)
-}
-
-linkedList.debugPrint()
+// for-in 遍历
+for item in list { print(item) }
 ```
 
+### DoubleLinkedList - 双向链表
 
-
-###### DoubleLinkedList
+头尾插入 O(1)，随机访问 O(n/2)。
 
 ```swift
-var dLinkedList = DoubleLinkedList<Int>()
-for i in 0 ... 10 {
-    dLinkedList.append(i + 1, at: 0)
-}
+var list = DoubleLinkedList<Int>()
+for i in 1 ... 11 { list.append(i, at: 0) }
+list.append(20, at: 5)
+list.debugPrint()
 
-dLinkedList.append(20, at: 5)
+list.remove(at: 5)
+list.remove(6)
+list.removeFirst()
+list.removeLast()
+list.debugPrint()
 
-dLinkedList.debugPrint()
-
-dLinkedList.remove(at: 5)
-dLinkedList.remove(6)
-dLinkedList.removeFirst()
-dLinkedList.removeLast()
-
-dLinkedList.debugPrint()
-
-for _ in 0 ... 10 {
-    dLinkedList.removeFirst()
-}
-
-dLinkedList.debugPrint()
+// for-in 遍历
+for item in list { print(item) }
 ```
 
+### Stack - 栈
 
-
-###### Stack
+先进后出（FILO）。
 
 ```swift
 var stack = Stack<Int>()
-for i in 0 ... 10 {
-    stack.push(i + 1)
-}
+for i in 1 ... 11 { stack.push(i) }
 stack.debugPrint()
 
-for _ in 0 ... 11 {
-    stack.pop()
-}
+print(stack.top() ?? "empty")  // 查看栈顶，不弹出
 
-stack.debugPrint()
+while let top = stack.pop() { print(top) }
 ```
 
+### Queue - 队列
 
-
-###### Queue
+先进先出（FIFO）。
 
 ```swift
 var queue = Queue<Int>()
-for i in 0 ... 10 {
-    queue.offer(i + 1)
-}
+for i in 1 ... 11 { queue.offer(i) }
 queue.debugPrint()
 
-let _ = queue.poll()
+if let front = queue.poll() { print("出队：\(front)") }
+
+// for-in 遍历
+for item in queue { print(item) }
 
 queue.removeAll()
-
-queue.debugPrint()
 ```
 
+### Dequeue - 双端队列
 
-
-###### Dequeue
+两端均可入队/出队。
 
 ```swift
-var deQueue = Dequeue<Int>()
-for i in 0 ... 10 {
-    deQueue.offerFront(i + 1)
-}
-for i in 11 ... 20 {
-    deQueue.offerRear(i + 1)
-}
-deQueue.debugPrint()
+var deque = Dequeue<Int>()
+for i in 1 ... 11  { deque.offerFront(i) }
+for i in 12 ... 21 { deque.offerRear(i) }
+deque.debugPrint()
 
-let _ = deQueue.pollRear()
-let _ = deQueue.pollFront()
+deque.pollFront()
+deque.pollRear()
 
-deQueue.debugPrint()
+// for-in 遍历
+for item in deque { print(item) }
 ```
 
+### BinaryHeap - 二叉堆
 
-
-###### BinaryHeap
+默认大顶堆，传 `type: .min` 创建小顶堆。支持 O(n) 批量建堆。
 
 ```swift
-let maxNum = 10
-var heap = BinaryHeap<Int>()
-for _ in 0 ... maxNum {
-    let num = Int.random(in: 1 ... maxNum)
-    heap.append(num)
-}
+// 大顶堆（默认）
+var maxHeap = BinaryHeap<Int>()
+for _ in 0 ... 10 { maxHeap.append(Int.random(in: 1 ... 100)) }
 
-var str = ""
-for _ in 0 ... maxNum {
-    let num = heap.remove()
-    str += "\(num!) "
-}
-print(str)
+var result = ""
+while let top = maxHeap.remove() { result += "\(top) " }
+print(result)  // 降序输出
 
-var nums = [Int]()
-for _ in 0 ... maxNum {
-    let num = Int.random(in: 1 ... maxNum)
-    nums.append(num)
-}
+// 小顶堆 + 批量建堆 O(n)
+let nums = (0 ... 10).map { _ in Int.random(in: 1 ... 100) }
+var minHeap = BinaryHeap(type: .min, elements: nums)
 
-var heap1 = BinaryHeap(type: .min ,elements: nums)
+result = ""
+while let top = minHeap.remove() { result += "\(top) " }
+print(result)  // 升序输出
 
-str = ""
-for _ in 0 ... maxNum {
-    let num = heap1.remove()
-    str += "\(num!) "
-}
-print(str)
+// for-in 遍历内部数组顺序（非排序顺序）
+for element in minHeap { print(element) }
 ```
 
+### PriorityQueue - 优先队列
 
-
-###### PriorityQueue
+封装 `BinaryHeap`，**必须显式指定 `.max` 或 `.min`**。
 
 ```swift
-let maxNum = 10
-var heap = PriorityQueue<Int>()
-for _ in 0 ... maxNum {
-    let num = Int.random(in: 1 ... maxNum)
-    heap.append(num)
-}
+// 小顶优先队列
+var minPQ = PriorityQueue<Int>(type: .min)
+for _ in 0 ... 10 { minPQ.append(Int.random(in: 1 ... 100)) }
 
-var str = ""
-for _ in 0 ... maxNum {
-    let num = heap.remove()
-    str += "\(num!) "
-}
-print(str)
+while let top = minPQ.remove() { print(top) }  // 升序输出
 
-var heap1 = PriorityQueue<Int>(type: .max)
-for _ in 0 ... maxNum {
-    let num = Int.random(in: 1 ... maxNum)
-    heap1.append(num)
-}
+// 大顶优先队列
+var maxPQ = PriorityQueue<Int>(type: .max)
+for _ in 0 ... 10 { maxPQ.append(Int.random(in: 1 ... 100)) }
 
-str = ""
-for _ in 0 ... maxNum {
-    let num = heap1.remove()
-    str += "\(num!) "
-}
-print(str)
+// for-in 遍历
+for element in maxPQ { print(element) }
 ```
 
+## 环境要求
+
+- Swift 5.0+
+- iOS 9.0+ / macOS 10.13+
+
+## License
+
+MIT
