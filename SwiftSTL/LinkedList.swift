@@ -10,7 +10,7 @@ import Foundation
 
 public struct LinkedList<E: Equatable>: List {
     
-    private class Node<Element: Equatable> {
+    internal class Node<Element: Equatable> {
         var element: Element
         var next: Node?
         
@@ -124,10 +124,9 @@ extension LinkedList: Sequence {
     
     /// 嵌套迭代器类型，可访问 private Node，O(n) 遍历
     public struct Iterator: IteratorProtocol {
-        // 持有节点指针而非索引，避免 O(n²)
         private var currentNode: LinkedList.Node<E>?
         
-        private init(currentNode: LinkedList.Node<E>?) {
+        internal init(currentNode: LinkedList.Node<E>?) {
             self.currentNode = currentNode
         }
         

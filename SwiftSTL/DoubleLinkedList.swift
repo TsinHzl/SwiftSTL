@@ -10,7 +10,7 @@ import Foundation
 
 public struct DoubleLinkedList<E: Equatable>: List {
     
-    private class Node<Element: Equatable> {
+    internal class Node<Element: Equatable> {
         var element: Element
         var prev: Node<Element>?
         var next: Node<Element>?
@@ -151,7 +151,7 @@ extension DoubleLinkedList: Sequence {
     public struct Iterator: IteratorProtocol {
         private var currentNode: DoubleLinkedList.Node<E>?
         
-        private init(currentNode: DoubleLinkedList.Node<E>?) {
+        internal init(currentNode: DoubleLinkedList.Node<E>?) {
             self.currentNode = currentNode
         }
         
