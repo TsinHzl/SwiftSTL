@@ -10,11 +10,10 @@ import Foundation
 
 public struct DoubleLinkedList<E: Equatable>: List {
     
-    class Node<Element: Equatable> {
+    private class Node<Element: Equatable> {
         var element: Element
         var prev: Node<Element>?
         var next: Node<Element>?
-        
         
         deinit {
             _debugPrint("--- DoubleLinkedList.Node.deinit ---")
@@ -35,36 +34,20 @@ public struct DoubleLinkedList<E: Equatable>: List {
     
     public init() { }
     
-    /// 获取指定index位置的元素
-    /// - Parameter index: 索引
-    /// - Returns: 没有的话就返回空
     public func get(at index: Int) -> E? {
         return getNode(index)?.element
     }
     
-    /// 设置指定index位置的元素
-    /// - Parameters:
-    ///   - element: 要设置的元素
-    ///   - index: 所以呢
-    /// - Returns: 返回被替换的元素，为nil的话，就证明没被替换掉
+    /// 设置指定index位置的元素，返回被替换的旧元素
     public func set(_ element: E, at index: Int) -> E? {
-        
         let node = getNode(index)
         let old = node?.element
         node?.element = element
-        
         return old
     }
     
-    /// 在指定index位置添加元素
-    /// - Parameters:
-    ///   - element: 要添加的元素
-    ///   - index: 索引
     public mutating func append(_ element: E, at index: Int) {
-        
-        do {
-            try rangeCheckForAdd(at: index)
-        } catch {}
+        guard rangeCheckForAdd(at: index) else { return }
         
         if index == count {
             let l = last
@@ -90,21 +73,17 @@ public struct DoubleLinkedList<E: Equatable>: List {
         count += 1
     }
     
-    /// 移除指定index位置的元素
-    /// - Parameter index: 索引
-    /// - Returns: 返回被移除的元素，如果没有就返回nil
     @discardableResult
     public mutating func remove(at index: Int) -> E? {
-        do {
-            try rangeCheck(at: index)
-        } catch { return nil }
+        guard rangeCheck(at: index) else { return nil }
         
         let node = getNode(index)
         let prev = node?.prev
         let next = node?.next
         let old = node?.element
+        
         if prev == nil {
-            first = next;
+            first = next
         } else {
             prev?.next = next
         }
@@ -119,22 +98,17 @@ public struct DoubleLinkedList<E: Equatable>: List {
         return old
     }
     
-    /// 获取元素的索引
-    /// - Parameter element: 要获取索引的元素
-    /// - Returns: 返回元素的索引，元素不存在的话，就返回nil
     public func indexOf(_ element: E?) -> Int? {
         guard let element = element else { return nil }
         
         var node = first
         for i in 0 ..< count {
             if node?.element == element { return i }
-            
             node = node?.next
         }
         return nil
     }
     
-    /// 清空链表
     public mutating func removeAll() {
         count = 0
         first = nil
@@ -144,66 +118,43 @@ public struct DoubleLinkedList<E: Equatable>: List {
     public func debugPrint() {
         var node = first
         var str = ""
-        while node != nil {
-            if node?.next == nil {
-                str += "\(node!.element)"
-            } else {
-                str += "\(node!.element) -> "
-            }
-            node = node?.next
+        while let current = node {
+            str += current.next == nil ? "\(current.element)" : "\(current.element) -> "
+            node = current.next
         }
         _debugPrint(str)
     }
-}
-
-extension DoubleLinkedList {
+    
     private func getNode(_ index: Int?) -> Node<E>? {
-        guard let index = index else { return nil }
-        
-        do {
-            try rangeCheck(at: index)
-        } catch {
-            return nil
-        }
+        guard let index = index, rangeCheck(at: index) else { return nil }
         
         if index < (count >> 1) {
             var node = first
-            for _ in 0 ..< index {
-                node = node?.next
-            }
+            for _ in 0 ..< index { node = node?.next }
             return node
         } else {
             var node = last
-            for _ in index ..< count - 1 {
-                node = node?.prev
-            }
+            for _ in index ..< count - 1 { node = node?.prev }
             return node
         }
     }
 }
 
 
-// MARK: - for iterator
+// MARK: - Sequence
 extension DoubleLinkedList: Sequence {
-    public func makeIterator() -> DoubleLinkedListIterator<E> {
-        return DoubleLinkedListIterator(linkedList: self)
-    }
-}
-
-public struct DoubleLinkedListIterator<Element: Equatable>: IteratorProtocol {
-    private var currentIndex = 0
-    private var linkedList: DoubleLinkedList<Element>
-    
-    init(linkedList: DoubleLinkedList<Element>) {
-        self.linkedList = linkedList
+    public func makeIterator() -> Iterator {
+        return Iterator(node: first)
     }
     
-    public mutating func next() -> Element? {
-        guard currentIndex < linkedList.count else { return nil }
+    /// 嵌套迭代器类型，可访问 private Node，O(n) 遍历
+    public struct Iterator: IteratorProtocol {
+        fileprivate var currentNode: DoubleLinkedList.Node<E>?
         
-        let element = linkedList.get(at: currentIndex)
-        currentIndex += 1
-        return element
+        public mutating func next() -> E? {
+            guard let node = currentNode else { return nil }
+            currentNode = node.next
+            return node.element
+        }
     }
 }
-

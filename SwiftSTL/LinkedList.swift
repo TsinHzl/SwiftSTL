@@ -10,10 +10,9 @@ import Foundation
 
 public struct LinkedList<E: Equatable>: List {
     
-    class Node<Element: Equatable> {
+    private class Node<Element: Equatable> {
         var element: Element
         var next: Node?
-        
         
         deinit {
             _debugPrint("--- LinkedList.Node.deinit ---")
@@ -27,110 +26,72 @@ public struct LinkedList<E: Equatable>: List {
     
     private var first: Node<E>?
     
-    
     /// 链表的个数
     public private(set) var count: Int = 0
-    
-    /// 链表是否为空
-    public private(set) var isEmpty: Bool = false
+    // isEmpty 由 List 协议扩展提供（count == 0）
     
     
     public init() { }
     
-    /// 获取指定index位置的元素
-    /// - Parameter index: 索引
-    /// - Returns: 没有的话就返回nil
     public func get(at index: Int) -> E? {
         return getNode(at: index)?.element
     }
     
-    /// 设置指定index位置的元素
-    /// - Parameters:
-    ///   - element: 要设置的新元素
-    ///   - index: 索引
-    /// - Returns: 返回被替换掉的元素，没被替换的话，就返回nil
     public func set(_ element: E, at index: Int) -> E? {
-        
         let node = getNode(at: index)
         let oldElement = node?.element
-        
         node?.element = element
-        
         return oldElement
     }
     
-    /// 在指定位置添加元素
-    /// - Parameters:
-    ///   - element: 要添加的元素
-    ///   - index: 索引
     public mutating func append(_ element: E, at index: Int) {
-        
-        do {
-            try rangeCheckForAdd(at: index)
-            if index == 0 {
-                first = Node(element: element, next: first)
-            } else {
-                let prevNode = getNode(at: index - 1)
-                let newNode = Node(element: element, next: prevNode?.next)
-                prevNode?.next = newNode
-            }
-            count += 1
-        } catch { }
+        guard rangeCheckForAdd(at: index) else { return }
+        if index == 0 {
+            first = Node(element: element, next: first)
+        } else {
+            let prevNode = getNode(at: index - 1)
+            let newNode = Node(element: element, next: prevNode?.next)
+            prevNode?.next = newNode
+        }
+        count += 1
     }
     
     @discardableResult
-    /// 移除指定index位置的元素
-    /// - Parameter index: 索引
-    /// - Returns: 返回移除的元素，没有的话，就返回nil
     public mutating func remove(at index: Int) -> E? {
-        do {
-            try rangeCheck(at: index)
-            
-            var oldElement: E?
-            if index == 0 {
-                oldElement = first?.element
-                first = first?.next
-            } else {
-                let prevNode = getNode(at: index - 1)
-                oldElement = prevNode?.next?.element
-                prevNode?.next = prevNode?.next?.next
-            }
-            return oldElement
-        } catch {
-            return nil
+        guard rangeCheck(at: index) else { return nil }
+        
+        let oldElement: E?
+        if index == 0 {
+            oldElement = first?.element
+            first = first?.next
+        } else {
+            let prevNode = getNode(at: index - 1)
+            oldElement = prevNode?.next?.element
+            prevNode?.next = prevNode?.next?.next
         }
+        count -= 1
+        return oldElement
     }
     
-    /// 移除指定元素
-    /// - Parameter element: 要移除的元素
     public mutating func remove(_ element: E?) {
         if let index = indexOf(element) {
-            let _ = remove(at: index)
+            _ = remove(at: index)
         }
     }
     
-    /// 获取指定元素的索引
-    /// - Parameter element: 元素
-    /// - Returns: 返回索引index，没有的话就返回nil
     public func indexOf(_ element: E?) -> Int? {
         guard let element = element else { return nil }
         
         var node = first
-        var index = -1
-        var isHit = false
-        while node != nil {
+        var index = 0
+        while let current = node {
+            if current.element == element { return index }
+            node = current.next
             index += 1
-            if node?.element == element {
-                isHit = true
-                break
-            }
-            node = node?.next
         }
-        
-        return isHit ? index : nil
+        return nil
     }
     
-    /// 清空链表
     public mutating func removeAll() {
         count = 0
         first = nil
@@ -139,56 +100,37 @@ public struct LinkedList<E: Equatable>: List {
     public func debugPrint() {
         var node = first
         var str = ""
-        while node != nil {
-            if node?.next == nil {
-                str += "\(node!.element)"
-            } else {
-                str += "\(node!.element) -> "
-            }
-            node = node?.next
+        while let current = node {
+            str += current.next == nil ? "\(current.element)" : "\(current.element) -> "
+            node = current.next
         }
         _debugPrint(str)
     }
-}
-
-extension LinkedList {
+    
     private func getNode(at index: Int) -> Node<E>? {
-        do {
-            try rangeCheck(at: index)
-            
-            var node = first
-            for _ in 0 ..< index {
-                node = node?.next
-            }
-            
-            return node
-        } catch {
-            return nil
-        }
+        guard rangeCheck(at: index) else { return nil }
+        var node = first
+        for _ in 0 ..< index { node = node?.next }
+        return node
     }
 }
 
 
-// MARK: - for iterator
+// MARK: - Sequence
 extension LinkedList: Sequence {
-    public func makeIterator() -> LinkedListIterator<E> {
-        return LinkedListIterator(linkedList: self)
-    }
-}
-
-public struct LinkedListIterator<Element: Equatable>: IteratorProtocol {
-    private var currentIndex = 0
-    private var linkedList: LinkedList<Element>
-    
-    init(linkedList: LinkedList<Element>) {
-        self.linkedList = linkedList
+    public func makeIterator() -> Iterator {
+        return Iterator(node: first)
     }
     
-    public mutating func next() -> Element? {
-        guard currentIndex < linkedList.count else { return nil }
+    /// 嵌套迭代器类型，可访问 private Node，O(n) 遍历
+    public struct Iterator: IteratorProtocol {
+        // 持有节点指针而非索引，避免 O(n²)
+        fileprivate var currentNode: LinkedList.Node<E>?
         
-        let element = linkedList.get(at: currentIndex)
-        currentIndex += 1
-        return element
+        public mutating func next() -> E? {
+            guard let node = currentNode else { return nil }
+            currentNode = node.next
+            return node.element
+        }
     }
 }

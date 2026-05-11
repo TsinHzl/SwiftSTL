@@ -15,11 +15,6 @@ internal func _debugPrint(_ items: Any..., separator: String = " ", terminator: 
 }
 
 
-enum ListError: Error {
-    case indexOutOfBounds(String)
-}
-
-
 public protocol List {
     
     associatedtype E: Equatable
@@ -76,7 +71,7 @@ extension List {
     
     public mutating func remove(_ element: E?) {
         if let index = indexOf(element) {
-            let _ = remove(at: index)
+            remove(at: index)
         }
     }
     
@@ -90,22 +85,12 @@ extension List {
         return remove(at: count - 1)
     }
     
-    internal func outOfBounds(at index: Int) throws {
-        throw ListError.indexOutOfBounds("index: \(index) out of bounds: \(count)")
+    internal func rangeCheck(at index: Int) -> Bool {
+        return index >= 0 && index < count
     }
     
-    internal func rangeCheck(at index: Int) throws {
-        if index < 0 || index >= count {
-            try outOfBounds(at: index)
-        }
+    internal func rangeCheckForAdd(at index: Int) -> Bool {
+        return index >= 0 && index <= count
     }
-    
-    internal func rangeCheckForAdd(at index: Int) throws {
-        if index < 0 || index > count {
-            try outOfBounds(at: index)
-        }
-    }
-    
-    internal func ensure(capacity: Int) {}
 }
 

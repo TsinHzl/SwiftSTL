@@ -129,8 +129,8 @@ private func testHeap() {
     
     var str = ""
     for _ in 0 ... maxNum {
-        let num = heap.remove()
-        str += "\(num!) "
+        guard let num = heap.remove() else { break }
+        str += "\(num) "
     }
     print(str)
     
@@ -144,15 +144,15 @@ private func testHeap() {
     
     str = ""
     for _ in 0 ... maxNum {
-        let num = heap1.remove()
-        str += "\(num!) "
+        guard let num = heap1.remove() else { break }
+        str += "\(num) "
     }
     print(str)
 }
 
 private func testPriorityQueue() {
     let maxNum = 10
-    var heap = PriorityQueue<Int>()
+    var heap = PriorityQueue<Int>(type: .min)
     for _ in 0 ... maxNum {
         let num = Int.random(in: 1 ... maxNum)
         heap.append(num)
@@ -160,8 +160,8 @@ private func testPriorityQueue() {
     
     var str = ""
     for _ in 0 ... maxNum {
-        let num = heap.remove()
-        str += "\(num!) "
+        guard let num = heap.remove() else { break }
+        str += "\(num) "
     }
     print(str)
     
@@ -173,8 +173,8 @@ private func testPriorityQueue() {
     
     str = ""
     for _ in 0 ... maxNum {
-        let num = heap1.remove()
-        str += "\(num!) "
+        guard let num = heap1.remove() else { break }
+        str += "\(num) "
     }
     
     heap1.forEach { n in

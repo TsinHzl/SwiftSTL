@@ -31,14 +31,13 @@ public struct Stack<E> {
     /// - Returns: 如果栈为空则返回nil
     @discardableResult
     public mutating func pop() -> E? {
-        if list.count == 0 { return nil }
-        
+        guard !list.isEmpty else { return nil }
         return list.remove(at: list.count - 1)
     }
     
     /// 查看栈顶元素
     /// - Returns: 如果栈为空则返回nil
-    public mutating func top() -> E? {
+    public func top() -> E? {
         return list.last
     }
     
@@ -65,31 +64,15 @@ public struct Stack<E> {
     }
     
     internal func get(at index: Int) -> E? {
+        guard index >= 0 && index < list.count else { return nil }
         return list[index]
     }
 }
 
 
-// MARK: - for iterator
+// MARK: - Sequence
 extension Stack: Sequence {
-    public func makeIterator() -> StackIterator<E> {
-        return StackIterator(stack: self)
-    }
-}
-
-public struct StackIterator<Element>: IteratorProtocol {
-    private var currentIndex = 0
-    private var stack: Stack<Element>
-    
-    init(stack: Stack<Element>) {
-        self.stack = stack
-    }
-    
-    public mutating func next() -> Element? {
-        guard currentIndex < stack.count else { return nil }
-        
-        let element = stack.get(at: currentIndex)
-        currentIndex += 1
-        return element
+    public func makeIterator() -> IndexingIterator<[E]> {
+        return list.makeIterator()
     }
 }

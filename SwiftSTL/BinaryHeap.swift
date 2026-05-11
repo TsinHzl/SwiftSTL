@@ -16,7 +16,7 @@ public struct BinaryHeap<E: Comparable> {
     }
     
     
-    internal var elements = [E]()
+    private var elements = [E]()
     
     /// 类型， 默认是大顶堆
     private var type = HeapType.max
@@ -35,7 +35,7 @@ public struct BinaryHeap<E: Comparable> {
     /// 初始化构造器
     /// - Parameters:
     ///   - type: 对类型，默认是.max   大顶堆
-    ///   - elements: 如果这个值不是空的，就会批量建堆，批量建堆时间复杂度为O(logn)
+    ///   - elements: 如果这个值不是空的，就会批量建堆，批量建堆时间复杂度为O(n)
     public init(type: HeapType = HeapType.max, elements: [E] = [E]()) {
         self.type = type
         self.elements = elements
@@ -82,15 +82,10 @@ public struct BinaryHeap<E: Comparable> {
         return top
     }
     
-    /// 遍历堆元素
+    /// 遍历堆元素（已废弃，请直接用 for-in）
+    @available(*, deprecated, renamed: "forEach")
     public func traversal(travaler: ((E) -> ())? = nil) {
-        elements.forEach { e in
-            if travaler != nil {
-                travaler?(e)
-            } else {
-                _debugPrint(e)
-            }
-        }
+        elements.forEach { travaler?($0) ?? _debugPrint($0) }
     }
     
     /// 批量建堆
@@ -102,7 +97,7 @@ public struct BinaryHeap<E: Comparable> {
         }
     }
     
-    /// 批量建堆 siftDown效率更高
+    /// 批量建堆 siftDown效率更高，时间复杂度O(n)
     private mutating func heapifyDown() {
         if elements.count <= 1 { return }
         
@@ -163,36 +158,14 @@ public struct BinaryHeap<E: Comparable> {
     }
     
     public func debugPrint() {
-        var str = ""
-        for e in elements {
-            str += "\(e) "
-        }
-        
-        _debugPrint(str)
+        _debugPrint(elements.map { "\($0)" }.joined(separator: " "))
     }
 }
 
 
-// MARK: - for iterator
+// MARK: - Sequence
 extension BinaryHeap: Sequence {
-    public func makeIterator() -> BinaryHeapIterator<E> {
-        return BinaryHeapIterator(heap: self)
-    }
-}
-
-public struct BinaryHeapIterator<Element: Comparable>: IteratorProtocol {
-    private var currentIndex = 0
-    private var heap: BinaryHeap<Element>
-    
-    init(heap: BinaryHeap<Element>) {
-        self.heap = heap
-    }
-    
-    mutating public func next() -> Element? {
-        guard currentIndex < heap.count else { return nil }
-        
-        let element = heap.elements[currentIndex]
-        currentIndex += 1
-        return element
+    public func makeIterator() -> IndexingIterator<[E]> {
+        return elements.makeIterator()
     }
 }

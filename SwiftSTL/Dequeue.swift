@@ -61,19 +61,7 @@ public struct Dequeue<E: Equatable> {
     }
     
     public func debugPrint() {
-        let count = list.count
-        var str = ""
-        for i in 0 ..< count {
-            guard let e = list.get(at: i) else { continue }
-            
-            if i == count - 1 {
-                str += "\(e)"
-            } else {
-                str += "\(e), "
-            }
-        }
-        
-        _debugPrint(str)
+        _debugPrint(list.map { "\($0)" }.joined(separator: ", "))
     }
     
     internal func get(at index: Int) -> E? {
@@ -82,26 +70,9 @@ public struct Dequeue<E: Equatable> {
 }
 
 
-// MARK: - for iterator
+// MARK: - Sequence
 extension Dequeue: Sequence {
-    public func makeIterator() -> DequeueIterator<E> {
-        return DequeueIterator(queue: self)
-    }
-}
-
-public struct DequeueIterator<Element: Equatable>: IteratorProtocol {
-    private var currentIndex = 0
-    private var queue: Dequeue<Element>
-    
-    init(queue: Dequeue<Element>) {
-        self.queue = queue
-    }
-    
-    public mutating func next() -> Element? {
-        guard currentIndex < queue.count else { return nil }
-        
-        let element = queue.get(at: currentIndex)
-        currentIndex += 1
-        return element
+    public func makeIterator() -> DoubleLinkedList<E>.Iterator {
+        return list.makeIterator()
     }
 }

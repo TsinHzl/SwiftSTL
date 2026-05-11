@@ -9,7 +9,7 @@ import Foundation
 
 
 public struct PriorityQueue<E: Comparable> {
-    fileprivate var heap: BinaryHeap<E>
+    private var heap: BinaryHeap<E>
     
     /// 堆元素个数
     public var count: Int { heap.count }
@@ -21,8 +21,8 @@ public struct PriorityQueue<E: Comparable> {
     public var front: E? { heap.front }
     
     /// 初始化构造器
-    /// - Parameter type: 大小顶堆类型，默认是小顶堆
-    public init(type: BinaryHeap<E>.HeapType = .min) {
+    /// - Parameter type: 大小顶堆类型，必须显式指定（.max 大顶堆 / .min 小顶堆）
+    public init(type: BinaryHeap<E>.HeapType) {
         self.heap = BinaryHeap(type: type)
     }
     
@@ -45,26 +45,9 @@ public struct PriorityQueue<E: Comparable> {
 }
 
 
-// MARK: - for iterator
+// MARK: - Sequence
 extension PriorityQueue: Sequence {
-    public func makeIterator() -> PriorityQueueIterator<E> {
-        return PriorityQueueIterator(heap: self)
-    }
-}
-
-public struct PriorityQueueIterator<Element: Comparable>: IteratorProtocol {
-    private var currentIndex = 0
-    private var heap: PriorityQueue<Element>
-    
-    init(heap: PriorityQueue<Element>) {
-        self.heap = heap
-    }
-    
-    public mutating func next() -> Element? {
-        guard currentIndex < heap.count else { return nil }
-        
-        let element = heap.heap.elements[currentIndex]
-        currentIndex += 1
-        return element
+    public func makeIterator() -> IndexingIterator<[E]> {
+        return heap.makeIterator()
     }
 }
