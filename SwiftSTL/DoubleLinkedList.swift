@@ -144,12 +144,16 @@ public struct DoubleLinkedList<E: Equatable>: List {
 // MARK: - Sequence
 extension DoubleLinkedList: Sequence {
     public func makeIterator() -> Iterator {
-        return Iterator(node: first)
+        return Iterator(currentNode: first)
     }
     
     /// 嵌套迭代器类型，可访问 private Node，O(n) 遍历
     public struct Iterator: IteratorProtocol {
-        fileprivate var currentNode: DoubleLinkedList.Node<E>?
+        private var currentNode: DoubleLinkedList.Node<E>?
+        
+        init(currentNode: DoubleLinkedList.Node<E>?) {
+            self.currentNode = currentNode
+        }
         
         public mutating func next() -> E? {
             guard let node = currentNode else { return nil }

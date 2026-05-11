@@ -119,13 +119,17 @@ public struct LinkedList<E: Equatable>: List {
 // MARK: - Sequence
 extension LinkedList: Sequence {
     public func makeIterator() -> Iterator {
-        return Iterator(node: first)
+        return Iterator(currentNode: first)
     }
     
     /// 嵌套迭代器类型，可访问 private Node，O(n) 遍历
     public struct Iterator: IteratorProtocol {
         // 持有节点指针而非索引，避免 O(n²)
-        fileprivate var currentNode: LinkedList.Node<E>?
+        private var currentNode: LinkedList.Node<E>?
+        
+        init(currentNode: LinkedList.Node<E>?) {
+            self.currentNode = currentNode
+        }
         
         public mutating func next() -> E? {
             guard let node = currentNode else { return nil }

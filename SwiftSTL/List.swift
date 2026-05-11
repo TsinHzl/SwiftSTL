@@ -71,7 +71,7 @@ extension List {
     
     public mutating func remove(_ element: E?) {
         if let index = indexOf(element) {
-            remove(at: index)
+            _ = remove(at: index)
         }
     }
     
